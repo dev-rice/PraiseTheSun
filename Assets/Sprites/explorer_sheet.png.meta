@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 84582469958a81f4f848759fef932d37
-timeCreated: 1488470753
+timeCreated: 1488517730
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -68,7 +68,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 256
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -95,7 +95,7 @@ TextureImporter:
       name: explorer_sheet_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 17
         y: 0
         width: 16
         height: 16
@@ -108,7 +108,7 @@ TextureImporter:
       name: explorer_sheet_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
         width: 16
         height: 16
@@ -121,7 +121,7 @@ TextureImporter:
       name: explorer_sheet_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 51
         y: 0
         width: 16
         height: 16
@@ -134,7 +134,7 @@ TextureImporter:
       name: explorer_sheet_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 68
         y: 0
         width: 16
         height: 16
@@ -147,7 +147,7 @@ TextureImporter:
       name: explorer_sheet_5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 85
         y: 0
         width: 16
         height: 16
@@ -160,7 +160,7 @@ TextureImporter:
       name: explorer_sheet_6
       rect:
         serializedVersion: 2
-        x: 96
+        x: 102
         y: 0
         width: 16
         height: 16
@@ -173,7 +173,7 @@ TextureImporter:
       name: explorer_sheet_7
       rect:
         serializedVersion: 2
-        x: 112
+        x: 119
         y: 0
         width: 16
         height: 16
@@ -186,7 +186,7 @@ TextureImporter:
       name: explorer_sheet_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
         width: 16
         height: 16
