@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class Movable : MonoBehaviour {
     // const values for is grounded detection
     private const float onepixel = 0.0625f;
     private const float halfspriteheight = 0.5f;
+    private const float halfspritewidth = 0.5f;
     private const int groundLayerMask = 1 << 8;
 
     protected bool IsGrounded() {
