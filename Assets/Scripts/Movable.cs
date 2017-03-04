@@ -28,22 +28,21 @@ public class Movable : MonoBehaviour {
 
         // get int position
         int xint = (int)x_;
-        // int yint = (int)y_;
+        int yint = (int)y_;
 
         // get fractional part of position
         float xfrac = x_ - (float)xint;
-        // float yfrac = y_ - (float)yint;
+        float yfrac = y_ - (float)yint;
 
         // get pixel position, rounded
         int xpx = (int)((xfrac * 16.0f) - 0.5f);
-        // int ypx = (int)((yfrac * 16.0f) - 0.5f);
+        int ypx = (int)((yfrac * 16.0f) - 0.5f);
 
         // turn back into float
         float xfinal = (float)xint + ((float)xpx / 16.0f);
-        // float yfinal = (float)yint + ((float)ypx / 16.0f);
+        float yfinal = (float)yint + ((float)ypx / 16.0f);
 
-        // turned off the y-snap, it looked a bit weird - might revisit in the future
-        transform.position = new Vector3(xfinal, y_, 0.0f);
+        transform.position = new Vector3(xfinal, yfinal, 0.0f);
     }
     void OnRenderObject() {
         // restore the true position

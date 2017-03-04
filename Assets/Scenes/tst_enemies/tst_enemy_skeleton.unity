@@ -1143,6 +1143,16 @@ Prefab:
       propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 50771678590282006, guid: 3efa382b0ed58094fac99b90496949b8,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50771678590282006, guid: 3efa382b0ed58094fac99b90496949b8,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114386080363814362, guid: 3efa382b0ed58094fac99b90496949b8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3efa382b0ed58094fac99b90496949b8, type: 2}
