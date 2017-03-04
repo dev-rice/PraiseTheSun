@@ -2086,6 +2086,7 @@ GameObject:
   - component: {fileID: 1620685151}
   - component: {fileID: 1620685154}
   - component: {fileID: 1620685155}
+  - component: {fileID: 1620685156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2169,13 +2170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949855531a52642498b2c821cdd0747d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  horizontalRayCount: 4
-  verticalRayCount: 4
   moveSpeed: 3
-  jump_height: 2
+  jump_height: 1
   time_to_jump_apex: 0.3
   direction: 0
 --- !u!61 &1620685155
@@ -2192,6 +2188,26 @@ BoxCollider2D:
   m_Offset: {x: 0.1, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1}
+--- !u!50 &1620685156
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1620685150}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &1621628044
 GameObject:
   m_ObjectHideFlags: 0

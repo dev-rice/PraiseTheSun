@@ -21,10 +21,7 @@ public class PlayerController : Movable {
 
     public PlayerDirection direction;
 
-
-	// Use this for initialization
 	void Start () {
-		base.Start();
 		sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 
@@ -33,12 +30,12 @@ public class PlayerController : Movable {
 
 		velocity = new Vector3(0, 0, 0);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (IsGrounded()) {
 			velocity.y = 0;
-			
+
 			Vector2 input = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
 			direction = getDirectionFromInput(input);
@@ -46,16 +43,13 @@ public class PlayerController : Movable {
 			velocity.x = moveSpeed * input.x;
 
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				velocity.y += jumpVelocity;
+				velocity.y = jumpVelocity;
 			}
-		} else {
-			velocity.y += gravity * Time.deltaTime;
 		}
 
-		Vector3 actual_amount_moved = CalculateMovementAmount(velocity * Time.deltaTime);
-		transform.Translate(actual_amount_moved);
+		transform.Translate(velocity * Time.deltaTime);
 
-		handleDirection();                    
+		handleDirection();
 	}
 
 	private void handleDirection() {
