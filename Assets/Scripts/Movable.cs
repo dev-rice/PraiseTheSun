@@ -26,6 +26,8 @@ public class Movable : MonoBehaviour {
         x_ = transform.position.x;
         y_ = transform.position.y;
 
+        Debug.Log("In moveable cached position: " +  x_ + "," + y_);
+
         // get int position
         int xint = (int)x_;
         int yint = (int)y_;
@@ -42,6 +44,7 @@ public class Movable : MonoBehaviour {
         float xfinal = (float)xint + ((float)xpx / 16.0f);
         float yfinal = (float)yint + ((float)ypx / 16.0f);
 
+        Debug.Log("In moveable: " + transform.position);
         transform.position = new Vector3(xfinal, yfinal, 0.0f);
     }
     void OnRenderObject() {
