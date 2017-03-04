@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a28f8d9407dc00c4795f5204cb54448a
-timeCreated: 1488613580
+timeCreated: 1488645545
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -83,8 +83,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -94,10 +94,10 @@ TextureImporter:
       name: bone_axe_sheet_1
       rect:
         serializedVersion: 2
-        x: 17
+        x: 11
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,10 +107,10 @@ TextureImporter:
       name: bone_axe_sheet_2
       rect:
         serializedVersion: 2
-        x: 34
+        x: 22
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +120,10 @@ TextureImporter:
       name: bone_axe_sheet_3
       rect:
         serializedVersion: 2
-        x: 51
+        x: 33
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: bone_axe_sheet_4
       rect:
         serializedVersion: 2
-        x: 68
+        x: 44
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: bone_axe_sheet_5
       rect:
         serializedVersion: 2
-        x: 85
+        x: 55
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,10 +159,10 @@ TextureImporter:
       name: bone_axe_sheet_6
       rect:
         serializedVersion: 2
-        x: 102
+        x: 66
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       name: bone_axe_sheet_7
       rect:
         serializedVersion: 2
-        x: 119
+        x: 77
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

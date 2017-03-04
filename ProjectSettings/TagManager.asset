@@ -4,39 +4,52 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - P
+  - Pl
+  - Pla
+  - Play
+  - Playr
+  - Playre
+  - Playe
+  - W
+  - We
+  - Wea
+  - Weap
+  - Weapo
+  - Weapon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
-  -
-  -
+  - 
+  - 
   - Ground
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -46,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3647777505
+    locked: 0
+  - name: Effects
+    uniqueID: 2397342211
     locked: 0
