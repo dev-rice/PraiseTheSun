@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5078125
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -111,6 +111,10 @@ MonoBehaviour:
   patrolSize: 3
   moveSpeed: 3
   attackDistance: 3
+  attackCooldown: 1.5
+  attackSpeed: 1.5
+  axe: {fileID: 1133564758149242, guid: 086ef4c1719ef9d4e9e9584c280a2622, type: 2}
+  health: 0
 --- !u!212 &212978444790441978
 SpriteRenderer:
   m_ObjectHideFlags: 1

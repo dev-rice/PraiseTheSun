@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61908803826989648}
   - component: {fileID: 114183447595657236}
   - component: {fileID: 50193602424978590}
+  - component: {fileID: 114271552555286982}
   m_Layer: 0
   m_Name: enemy_boneaxe
   m_TagString: Weapon
@@ -106,6 +107,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c30f695154d6c94d90f8d26d2b3fee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114271552555286982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133564758149242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5fbf482d8ced149b78fb1bc242cc8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 250
 --- !u!212 &212650623390766954
 SpriteRenderer:
   m_ObjectHideFlags: 1

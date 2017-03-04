@@ -10,7 +10,8 @@ public class SkeletonController : Movable {
     // State handling
     public enum SkeletonState {
         Patrolling,
-        Attacking
+        Attacking,
+        Dead
     }
 
     public enum SkeletonDirection {
@@ -30,9 +31,12 @@ public class SkeletonController : Movable {
     [Header("Attack Settings")]
     public float attackDistance = 0.0f;
     public float attackCooldown = 0.0f;
-    private float currentCooldown = 0.0f;
+    private float currentCooldown = 999.0f;
     public float attackSpeed = 0.0f;
     public GameObject axe;
+
+    [Header("Health Settings")]
+    public int health;
 
     // component references
     private SpriteRenderer sprite;
@@ -54,6 +58,9 @@ public class SkeletonController : Movable {
 	}
 
 	void Update () {
+        if(state == SkeletonState.Dead){
+            return;
+        }
         // increment current cooldown regardless of state
         currentCooldown += Time.deltaTime;
 
@@ -74,7 +81,10 @@ public class SkeletonController : Movable {
                     newAxe.transform.position = transform.position;
 
                     // throw axe in arc at player
+                    float v_x = (player.transform.position.x - newAxe.transform.position.x) / attackSpeed;
+                    float v_y = ((player.transform.position.y - newAxe.transform.position.y) / attackSpeed) + 0.5f * 9.8f * attackSpeed;
 
+                    axeRigidbody.velocity = new Vector3(v_x, v_y, 0.0f);
                 }
             }
             if(state == SkeletonState.Patrolling){
@@ -93,7 +103,18 @@ public class SkeletonController : Movable {
             }
         }
 
+        if(health <= 0){
+            state = SkeletonState.Dead;
+        }
+
         // flip the sprite depending on direction
         sprite.flipX = (direction == SkeletonDirection.Left);
 	}
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if(collider.tag == "Weapon" && currentCooldown > 0.1f){
+            health -= collider.gameObject.GetComponent<WeaponDamage>().damage;
+            Destroy(collider.gameObject);
+        }
+    }
 }
