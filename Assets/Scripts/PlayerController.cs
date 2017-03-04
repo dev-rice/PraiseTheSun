@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerController : Movable {
 
     public float moveSpeed = 3.0f;
-    public float jump_height = 2.0f;
-    public float time_to_jump_apex = 0.4f;
+    public float jumpVelocity = 8.0f;
+
+	private float acceleration_time_airborne = 0.5f;
+	private float acceleration_time_grounded = 0.1f;
+	
 
     private SpriteRenderer sprite;
 
-    private float gravity;
-    private float jumpVelocity;
-    private Vector3 velocity;
+    private Rigidbody2D rigidbody;
+
+    private float velocity_x_smoothing;
 
     public enum PlayerDirection {
         Right,
@@ -22,37 +25,44 @@ public class PlayerController : Movable {
     public PlayerDirection direction;
 
 	void Start () {
+		rigidbody = GetComponent<Rigidbody2D>();
 		sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
-
-		gravity = -(2 * jump_height) / Mathf.Pow(time_to_jump_apex, 2);
-		jumpVelocity = Mathf.Abs(gravity) * time_to_jump_apex;
-
-		velocity = new Vector3(0, 0, 0);
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		Vector2 velocity = rigidbody.velocity;
 		if (IsGrounded()) {
-			velocity.y = 0;
-
-			Vector2 input = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-			direction = getDirectionFromInput(input);
-
-			velocity.x = moveSpeed * input.x;
-
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				velocity.y = jumpVelocity;
 			}
 		}
+		Vector2 input = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-		transform.Translate(velocity * Time.deltaTime);
+		// This smooths the velocity so it feels like you have less impact on your movement when you are in the air
+		velocity.x = smoothVelocityX(velocity.x, input.x * moveSpeed);
 
-		handleDirection();
+		rigidbody.velocity = velocity;
+
+		direction = getDirectionFromInput(input);
+		flipBasedOnDirection();
 	}
 
-	private void handleDirection() {
+	private float smoothVelocityX(float current_x_velocity, float target_velocity_x) {
+		float acceleration_time = getAccelerationTime();
+        return Mathf.SmoothDamp(current_x_velocity, target_velocity_x, ref velocity_x_smoothing, acceleration_time);
+	}
+
+	private float getAccelerationTime() {
+        if (IsGrounded()) {
+            return acceleration_time_grounded;
+        } else {
+            return acceleration_time_airborne;
+        }
+	}
+
+	private void flipBasedOnDirection() {
 		Vector3 scale = transform.localScale;
 		if (direction == PlayerDirection.Left) {
 			transform.localScale = new Vector3(-1, scale.y, scale.z);

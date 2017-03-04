@@ -2171,8 +2171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  jump_height: 1
-  time_to_jump_apex: 0.3
+  jumpMoveSpeed: 1.5
+  jumpVelocity: 5
   direction: 0
 --- !u!61 &1620685155
 BoxCollider2D:
@@ -2201,7 +2201,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
