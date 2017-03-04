@@ -10,7 +10,6 @@ public class PlayerController : Movable {
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
 	
-
     private SpriteRenderer sprite;
 
     private Rigidbody2D rigidbody;
