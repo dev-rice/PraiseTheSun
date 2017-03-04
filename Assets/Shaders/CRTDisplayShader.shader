@@ -66,13 +66,12 @@
 				float grn = (plusTwoFragColor.g + plusOneFragColor.g + plusNoneFragColor.g + minusOneFragColor.g + minusTwoFragColor.g)/5.0;
 				float blu = (plusTwoFragColor.b + plusOneFragColor.b + plusNoneFragColor.b + minusOneFragColor.b + minusTwoFragColor.b)/5.0;
 
-
 				if(xmod == 0.0){
-					fragColor = fixed4(red, 0.2, 0.2, 1.0);
+					fragColor = fixed4(red, 0.1, 0.1, 1.0);
 				} else if(xmod == 1.0){
-					fragColor = fixed4(0.2, grn, 0.2, 1.0);
+					fragColor = fixed4(0.1, grn, 0.1, 1.0);
 				} else {
-					fragColor = fixed4(0.2, 0.2, blu, 1.0);
+					fragColor = fixed4(0.1, 0.1, blu, 1.0);
 				}
 
 				return fragColor;
