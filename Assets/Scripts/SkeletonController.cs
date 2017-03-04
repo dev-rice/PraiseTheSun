@@ -13,20 +13,28 @@ public class SkeletonController : Movable {
         Attacking
     }
 
-    public SkeletonState state;
-
-
-    // Patrol settings
     public enum SkeletonDirection {
         Right,
         Left
     }
 
+    [Header("Skeleton State")]
+    public SkeletonState state;
     public SkeletonDirection direction;
+
+    [Header("Patrol Settings")]
     public float patrolSize = 0.0f;
     private float leftBound, rightBound;
     public float moveSpeed = 0.0f;
+
+    [Header("Attack Settings")]
+    public float attackDistance = 0.0f;
+
+    // component references
     private SpriteRenderer sprite;
+
+    // gameobject references
+    private GameObject player;
 
 	void Start () {
         // Setup patrol bounds
@@ -34,19 +42,25 @@ public class SkeletonController : Movable {
         rightBound = transform.position.x + patrolSize;
 
         sprite = GetComponent<SpriteRenderer>();
+
+        player = GameObject.FindWithTag("Player");
+        if(!player){
+            Debug.LogError("Couldn't find player gameobject.");
+        }
 	}
 
 	void Update () {
         if(IsGrounded()){
-            // update skeleton state here based on player distance
+            state = (transform.position - player.transform.position).magnitude <= attackDistance ? SkeletonState.Attacking : SkeletonState.Patrolling;
 
             if(state == SkeletonState.Attacking){
-                // Attack player
+                direction = transform.position.x > player.transform.position.x ? SkeletonDirection.Left : SkeletonDirection.Right;
+
+                // create a new axe
+                // shoot it at player
+                // put throw on cooldown
             }
             if(state == SkeletonState.Patrolling){
-                // If we're patrolling, face the way we're moving
-                sprite.flipX = (direction == SkeletonDirection.Left);
-
                 if(direction == SkeletonDirection.Right && transform.position.x < rightBound){
                     // Move right
                     Vector3 move = new Vector3(Time.deltaTime * moveSpeed, 0.0f, 0.0f);
@@ -61,5 +75,8 @@ public class SkeletonController : Movable {
                 }
             }
         }
+
+        // flip the sprite depending on direction
+        sprite.flipX = (direction == SkeletonDirection.Left);
 	}
 }
