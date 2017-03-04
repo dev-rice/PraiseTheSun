@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectsController : MonoBehaviour {
+public class EffectsController : Movable {
     // Just a macro to despawn an object when it's out of frame
     private float radius = 0.1f;
 

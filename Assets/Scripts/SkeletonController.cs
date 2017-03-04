@@ -30,7 +30,9 @@ public class SkeletonController : Movable {
     [Header("Attack Settings")]
     public float attackDistance = 0.0f;
     public float attackCooldown = 0.0f;
+    private float currentCooldown = 0.0f;
     public float attackSpeed = 0.0f;
+    public GameObject axe;
 
     // component references
     private SpriteRenderer sprite;
@@ -52,15 +54,28 @@ public class SkeletonController : Movable {
 	}
 
 	void Update () {
+        // increment current cooldown regardless of state
+        currentCooldown += Time.deltaTime;
+
         if(IsGrounded()){
             state = (transform.position - player.transform.position).magnitude <= attackDistance ? SkeletonState.Attacking : SkeletonState.Patrolling;
 
             if(state == SkeletonState.Attacking){
+                // face player
                 direction = transform.position.x > player.transform.position.x ? SkeletonDirection.Left : SkeletonDirection.Right;
 
-                // create a new axe
-                // shoot it at player
-                // put throw on cooldown
+                if(currentCooldown >= attackCooldown){
+                    // clear current cooldown
+                    currentCooldown = 0.0f;
+
+                    // create axe
+                    GameObject newAxe = Instantiate(axe);
+                    Rigidbody2D axeRigidbody = newAxe.GetComponent<Rigidbody2D>();
+                    newAxe.transform.position = transform.position;
+
+                    // throw axe in arc at player
+
+                }
             }
             if(state == SkeletonState.Patrolling){
                 if(direction == SkeletonDirection.Right && transform.position.x < rightBound){
