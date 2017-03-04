@@ -29,6 +29,8 @@ public class SkeletonController : Movable {
 
     [Header("Attack Settings")]
     public float attackDistance = 0.0f;
+    public float attackCooldown = 0.0f;
+    public float attackSpeed = 0.0f;
 
     // component references
     private SpriteRenderer sprite;
