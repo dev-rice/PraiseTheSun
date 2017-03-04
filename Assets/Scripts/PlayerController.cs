@@ -24,6 +24,7 @@ public class PlayerController : Movable {
 
 	// Use this for initialization
 	void Start () {
+		base.Start();
 		sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 
@@ -44,20 +45,35 @@ public class PlayerController : Movable {
 
 			velocity.x = moveSpeed * input.x;
 
-			if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
+			if (Input.GetKeyDown(KeyCode.Space)) {
 				velocity.y += jumpVelocity;
 			}
 		} else {
 			velocity.y += gravity * Time.deltaTime;
 		}
 
-		transform.Translate(velocity * Time.deltaTime);
+		Vector3 actual_amount_moved = CalculateMovementAmount(velocity * Time.deltaTime);
+		transform.Translate(actual_amount_moved);
 
-		sprite.flipX = (direction == PlayerDirection.Left);
-                    
+		handleDirection();                    
+	}
+
+	private void handleDirection() {
+		Vector3 scale = transform.localScale;
+		if (direction == PlayerDirection.Left) {
+			transform.localScale = new Vector3(-1, scale.y, scale.z);
+		} else if (direction == PlayerDirection.Right) {
+			transform.localScale = new Vector3(1, scale.y, scale.z);
+		}
 	}
 
 	private PlayerDirection getDirectionFromInput(Vector3 input) {
-		return input.x >= 0 ? PlayerDirection.Right : PlayerDirection.Left;
+		if (input.x == 0) {
+			return direction;
+		} else if (input.x >= 0) {
+			return PlayerDirection.Right;
+		} else {
+			return PlayerDirection.Left;
+		}
 	}
 }
