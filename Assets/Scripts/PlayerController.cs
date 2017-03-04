@@ -31,7 +31,7 @@ public class PlayerController : Movable {
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		Vector2 velocity = rigidbody.velocity;
 		if (IsGrounded()) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
