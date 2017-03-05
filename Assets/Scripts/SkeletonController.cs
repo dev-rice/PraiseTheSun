@@ -27,6 +27,7 @@ public class SkeletonController : Movable {
     public float patrolSize = 0.0f;
     private float leftBound, rightBound;
     public float moveSpeed = 0.0f;
+    private float horizontaldistance = 0.4f;
 
     [Header("Attack Settings")]
     public float attackDistance = 0.0f;
@@ -81,6 +82,8 @@ public class SkeletonController : Movable {
                     newAxe.transform.position = transform.position;
 
                     // throw axe in arc at player
+                    // V_0_x = (x - x_0) / t
+                    // V_0_y = (y - y_0 + 1/2 g t^2) / t
                     float v_x = (player.transform.position.x - newAxe.transform.position.x) / attackSpeed;
                     float v_y = ((player.transform.position.y - newAxe.transform.position.y) / attackSpeed) + 0.5f * 9.8f * attackSpeed;
 
@@ -88,11 +91,11 @@ public class SkeletonController : Movable {
                 }
             }
             if(state == SkeletonState.Patrolling){
-                if(direction == SkeletonDirection.Right && transform.position.x < rightBound){
+                if(direction == SkeletonDirection.Right && transform.position.x < rightBound && RightGroundDistance() > horizontaldistance){
                     // Move right
                     Vector3 move = new Vector3(Time.deltaTime * moveSpeed, 0.0f, 0.0f);
                     transform.position += move;
-                } else if(direction == SkeletonDirection.Left && transform.position.x > leftBound){
+                } else if(direction == SkeletonDirection.Left && transform.position.x > leftBound && LeftGroundDistance() > horizontaldistance){
                     // Move left
                     Vector3 move = new Vector3(Time.deltaTime * moveSpeed, 0.0f, 0.0f);
                     transform.position -= move;

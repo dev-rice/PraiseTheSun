@@ -24,6 +24,12 @@ public class Movable : MonoBehaviour {
     private const float halfspriteheight = 0.5f;
     private const int groundLayerMask = 1 << 8;
 
+    // const values for right/left probes
+    private const float horizontalprobemaxdistance = 1.0f;
+
+    //##########################################################################
+    // Left, Right, and Ground detection
+    //##########################################################################
     protected bool IsGrounded() {
         Vector3 rightprobe = new Vector2(transform.position.x + halfwidth,
                                          transform.position.y - halfspriteheight);
@@ -38,6 +44,31 @@ public class Movable : MonoBehaviour {
                Physics2D.Raycast(leftprobe, -Vector2.up, onepixel, groundLayerMask);
     }
 
+    protected float LeftGroundDistance(){
+        Debug.DrawRay(transform.position, -Vector3.right * horizontalprobemaxdistance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.right, horizontalprobemaxdistance, groundLayerMask);
+
+        if(hit.collider != null){
+            return hit.distance;
+        }
+
+        return Mathf.Infinity;
+    }
+
+    protected float RightGroundDistance(){
+        Debug.DrawRay(transform.position, Vector3.right * horizontalprobemaxdistance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.right, horizontalprobemaxdistance, groundLayerMask);
+
+        if(hit.collider != null){
+            return hit.distance;
+        }
+
+        return Mathf.Infinity;
+    }
+
+    //##########################################################################
+    // Pixel Snapping
+    //##########################################################################
     void LateUpdate(){
         if(snap == PixelSnap.OnLateUpdate){
             CacheTransformAndPixelSnap();
