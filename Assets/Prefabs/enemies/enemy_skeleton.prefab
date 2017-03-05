@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080949f8c14a7704981eb271d775920e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snap: 1
   state: 0
   direction: 0
   patrolSize: 3
