@@ -7,6 +7,8 @@ public class PlayerController : Movable {
     public float moveSpeed = 3.0f;
     public float jumpVelocity = 8.0f;
 
+    public Bonfire bonfire;
+
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
 	
@@ -15,6 +17,9 @@ public class PlayerController : Movable {
     private Rigidbody2D rigidbody;
 
     private float velocity_x_smoothing;
+
+    private bool isDead;
+    private const string BONFIRE_TAG = "Bonfire";
 
     public enum PlayerDirection {
         Right,
@@ -27,6 +32,7 @@ public class PlayerController : Movable {
 		rigidbody = GetComponent<Rigidbody2D>();
 		sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
+		isDead = false;
 	}
 
 	// Update is called once per frame
@@ -46,7 +52,30 @@ public class PlayerController : Movable {
 
 		direction = getDirectionFromInput(input);
 		flipBasedOnDirection();
+
+		if (Input.GetKeyDown(KeyCode.K)) {
+			isDead = true;
+		}
+
+		if (isDead) {
+			die();
+		}
 	}
+
+	void die() {
+		Debug.Log("You are died.");
+		rigidbody.velocity = new Vector2(0, 0);
+		transform.position = bonfire.transform.position;
+		isDead = false;
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == BONFIRE_TAG) {
+			Bonfire new_bonfire = (Bonfire)other.gameObject.GetComponent<Bonfire>();
+			new_bonfire.Light();
+			this.bonfire = new_bonfire;
+		}   
+	} 
 
 	private float smoothVelocityX(float current_x_velocity, float target_velocity_x) {
 		float acceleration_time = getAccelerationTime();
