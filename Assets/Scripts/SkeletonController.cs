@@ -80,6 +80,7 @@ public class SkeletonController : Movable {
                     GameObject newAxe = Instantiate(axe);
                     Rigidbody2D axeRigidbody = newAxe.GetComponent<Rigidbody2D>();
                     newAxe.transform.position = transform.position;
+                    newAxe.GetComponent<SpriteRenderer>().flipX = sprite.flipX;
 
                     // throw axe in arc at player
                     // V_0_x = (x - x_0) / t

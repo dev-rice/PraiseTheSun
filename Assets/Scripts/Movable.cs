@@ -6,17 +6,18 @@ using UnityEngine;
 public class Movable : MonoBehaviour {
     public enum PixelSnap {
         Never,
+        OnLateUpdate,
+        OnPreCull,
         OnRender,
-        OnLateUpdate
     }
 
-    [Header("Pixel Snapping")]
+    [Header("Pixel Snapping (in order of execution)")]
     public PixelSnap snap;
 
 
     // Overrides pre and post rendering to fix up pixel positions
-    private float x_;
-    private float y_;
+    protected float x_;
+    protected float y_;
 
     // const values for is grounded detection
     private const float onepixel = 0.0625f;
@@ -81,6 +82,12 @@ public class Movable : MonoBehaviour {
         }
     }
 
+    void OnPreCull(){
+        if(snap == PixelSnap.OnPreCull){
+            CacheTransformAndPixelSnap();
+        }
+    }
+
     void CacheTransformAndPixelSnap() {
         // Cache true position
         x_ = transform.position.x;
@@ -107,7 +114,7 @@ public class Movable : MonoBehaviour {
 
     void OnRenderObject() {
         // restore the true position
-        if (snap == PixelSnap.OnLateUpdate || snap == PixelSnap.OnRender) {
+        if (snap != PixelSnap.Never) {
             transform.position = new Vector3(x_, y_, 0.0f);
         }
     }
