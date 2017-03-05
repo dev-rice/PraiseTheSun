@@ -2903,6 +2903,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 50833731247051580, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 50833731247051580, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50833731247051580, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: snap
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61477028566468470, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 61477028566468470, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f876ece6a3c2e42fbb277271b3d8a498, type: 2}
   m_IsPrefabParent: 0

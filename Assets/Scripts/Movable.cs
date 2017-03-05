@@ -9,7 +9,7 @@ public class Movable : MonoBehaviour {
         OnRender,
         OnLateUpdate
     }
-    
+
     [Header("Pixel Snapping")]
     public PixelSnap snap;
 
@@ -20,16 +20,22 @@ public class Movable : MonoBehaviour {
 
     // const values for is grounded detection
     private const float onepixel = 0.0625f;
+    private const float halfwidth = 0.25f;
     private const float halfspriteheight = 0.5f;
     private const int groundLayerMask = 1 << 8;
 
     protected bool IsGrounded() {
-        // TODO Better isGrounded with two vectors, a set distance apart
-        Vector3 centered = new Vector2(transform.position.x,
-                                       transform.position.y - halfspriteheight);
+        Vector3 rightprobe = new Vector2(transform.position.x + halfwidth,
+                                         transform.position.y - halfspriteheight);
 
-        Debug.DrawRay(centered, -Vector3.up * onepixel);
-        return Physics2D.Raycast(centered, -Vector2.up, onepixel, groundLayerMask);
+        Vector3 leftprobe = new Vector2(transform.position.x - halfwidth,
+                                        transform.position.y - halfspriteheight);
+
+        Debug.DrawRay(rightprobe, -Vector3.up * onepixel);
+        Debug.DrawRay(leftprobe, -Vector3.up * onepixel);
+
+        return Physics2D.Raycast(rightprobe, -Vector2.up, onepixel, groundLayerMask) ||
+               Physics2D.Raycast(leftprobe, -Vector2.up, onepixel, groundLayerMask);
     }
 
     void LateUpdate(){
