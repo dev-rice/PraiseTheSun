@@ -1144,45 +1144,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: health
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 61359591725411352, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: idleSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 3df43bc961e7d744ca469922a6dd3cc1,
-        type: 3}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: throwSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 3df43bc961e7d744ca469922a6dd3cc1,
-        type: 3}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: hitSprite
-      value: 
-      objectReference: {fileID: 21300010, guid: 3df43bc961e7d744ca469922a6dd3cc1,
-        type: 3}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: deathSprite
-      value: 
-      objectReference: {fileID: 21300012, guid: 3df43bc961e7d744ca469922a6dd3cc1,
-        type: 3}
-    - target: {fileID: 114854660727415768, guid: 3efa382b0ed58094fac99b90496949b8,
-        type: 2}
-      propertyPath: attackCooldown
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3efa382b0ed58094fac99b90496949b8, type: 2}
   m_IsPrefabParent: 0

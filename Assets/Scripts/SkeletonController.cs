@@ -46,13 +46,6 @@ public class SkeletonController : Movable {
     // gameobject references
     private GameObject player;
 
-    // sprite references
-    [Header("Sprites")]
-    public Sprite idleSprite;
-    public Sprite throwSprite;
-    public Sprite hitSprite;
-    public Sprite deathSprite;
-
 	void Start () {
         // Setup patrol bounds
         leftBound = transform.position.x - patrolSize;
