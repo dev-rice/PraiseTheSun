@@ -40,17 +40,26 @@ public class SkeletonController : Movable {
     public int health;
 
     // component references
-    private SpriteRenderer sprite;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     // gameobject references
     private GameObject player;
+
+    // sprite references
+    [Header("Sprites")]
+    public Sprite idleSprite;
+    public Sprite throwSprite;
+    public Sprite hitSprite;
+    public Sprite deathSprite;
 
 	void Start () {
         // Setup patrol bounds
         leftBound = transform.position.x - patrolSize;
         rightBound = transform.position.x + patrolSize;
 
-        sprite = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         player = GameObject.FindWithTag("Player");
         if(!player){
@@ -65,7 +74,10 @@ public class SkeletonController : Movable {
         // increment current cooldown regardless of state
         currentCooldown += Time.deltaTime;
 
-        if(IsGrounded()){
+        // cache grounded state
+        bool isGrounded = IsGrounded();
+
+        if(isGrounded){
             state = (transform.position - player.transform.position).magnitude <= attackDistance ? SkeletonState.Attacking : SkeletonState.Patrolling;
 
             if(state == SkeletonState.Attacking){
@@ -76,11 +88,14 @@ public class SkeletonController : Movable {
                     // clear current cooldown
                     currentCooldown = 0.0f;
 
+                    //  play throw animation
+                    animator.SetTrigger("anim_throw");
+
                     // create axe
                     GameObject newAxe = Instantiate(axe);
                     Rigidbody2D axeRigidbody = newAxe.GetComponent<Rigidbody2D>();
                     newAxe.transform.position = transform.position;
-                    newAxe.GetComponent<SpriteRenderer>().flipX = sprite.flipX;
+                    newAxe.GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
 
                     // throw axe in arc at player
                     // V_0_x = (x - x_0) / t
@@ -89,9 +104,13 @@ public class SkeletonController : Movable {
                     float v_y = ((player.transform.position.y - newAxe.transform.position.y) / attackSpeed) + 0.5f * 9.8f * attackSpeed;
 
                     axeRigidbody.velocity = new Vector3(v_x, v_y, 0.0f);
+                } else {
+                    animator.SetTrigger("anim_idle");
                 }
             }
             if(state == SkeletonState.Patrolling){
+                animator.SetTrigger("anim_patrol");
+
                 if(direction == SkeletonDirection.Right && transform.position.x < rightBound && RightGroundDistance() > horizontaldistance){
                     // Move right
                     Vector3 move = new Vector3(Time.deltaTime * moveSpeed, 0.0f, 0.0f);
@@ -109,16 +128,18 @@ public class SkeletonController : Movable {
 
         if(health <= 0){
             state = SkeletonState.Dead;
+            animator.SetTrigger("anim_death");
         }
 
         // flip the sprite depending on direction
-        sprite.flipX = (direction == SkeletonDirection.Left);
+        spriteRenderer.flipX = (direction == SkeletonDirection.Left);
 	}
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.tag == "Weapon" && currentCooldown > 0.1f){
+        if(collider.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
             health -= collider.gameObject.GetComponent<WeaponDamage>().damage;
             Destroy(collider.gameObject);
+            animator.SetTrigger("anim_hit");
         }
     }
 }
