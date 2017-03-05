@@ -2041,7 +2041,7 @@ Prefab:
       objectReference: {fileID: 1281411297}
     - target: {fileID: 1908404230121680, guid: f876ece6a3c2e42fbb277271b3d8a498, type: 2}
       propertyPath: m_TagString
-      value: Bonfire
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
         type: 2}
