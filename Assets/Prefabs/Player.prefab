@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 50833731247051580}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,12 +55,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 58c0f4af7d95fa24ba71029ae7924025, type: 2}
-  m_Interpolate: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -75,9 +75,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.1, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.625, y: 1}
 --- !u!95 &95480406262667840
 Animator:
   serializedVersion: 3
@@ -106,9 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949855531a52642498b2c821cdd0747d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snap: 1
+  snap: 3
   moveSpeed: 3
   jumpVelocity: 6
+  health: 500
   bonfire: {fileID: 0}
   direction: 0
 --- !u!212 &212714616725296102

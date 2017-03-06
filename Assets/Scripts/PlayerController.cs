@@ -6,12 +6,13 @@ public class PlayerController : Movable {
 
     public float moveSpeed = 3.0f;
     public float jumpVelocity = 8.0f;
+    public int health;
 
     public Bonfire bonfire;
 
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
-	
+
     private SpriteRenderer sprite;
 
     private Rigidbody2D rigidbody;
@@ -74,8 +75,8 @@ public class PlayerController : Movable {
 			Bonfire new_bonfire = (Bonfire)other.gameObject.GetComponent<Bonfire>();
 			new_bonfire.Light();
 			this.bonfire = new_bonfire;
-		}   
-	} 
+		}
+	}
 
 	private float smoothVelocityX(float current_x_velocity, float target_velocity_x) {
 		float acceleration_time = getAccelerationTime();
