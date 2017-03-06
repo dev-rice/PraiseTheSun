@@ -13,9 +13,9 @@ public class PlayerController : Movable {
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
 
-    private SpriteRenderer sprite;
+    // private SpriteRenderer sprite;
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2d;
 
     private float velocity_x_smoothing;
 
@@ -30,15 +30,15 @@ public class PlayerController : Movable {
     public PlayerDirection direction;
 
 	void Start () {
-		rigidbody = GetComponent<Rigidbody2D>();
-		sprite = GetComponent<SpriteRenderer>();
+		rigidbody2d = GetComponent<Rigidbody2D>();
+		// sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 		isDead = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector2 velocity = rigidbody.velocity;
+		Vector2 velocity = rigidbody2d.velocity;
 		if (IsGrounded()) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				velocity.y = jumpVelocity;
@@ -49,7 +49,7 @@ public class PlayerController : Movable {
 		// This smooths the velocity so it feels like you have less impact on your movement when you are in the air
 		velocity.x = smoothVelocityX(velocity.x, input.x * moveSpeed);
 
-		rigidbody.velocity = velocity;
+		rigidbody2d.velocity = velocity;
 
 		direction = getDirectionFromInput(input);
 		flipBasedOnDirection();
@@ -65,7 +65,7 @@ public class PlayerController : Movable {
 
 	void die() {
 		Debug.Log("You are died.");
-		rigidbody.velocity = new Vector2(0, 0);
+		rigidbody2d.velocity = new Vector2(0, 0);
 		transform.position = bonfire.transform.position;
 		isDead = false;
 	}
