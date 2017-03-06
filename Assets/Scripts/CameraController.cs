@@ -6,8 +6,6 @@ public class CameraController : MonoBehaviour {
 
 	public Transform target;
 
-	public float kp, ki, kd;
-
 	private Camera camera;
 
 	private float bottomBound;
@@ -29,31 +27,35 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		centerTargetOnScreenPoint(getDesiredScreenPoint());
+	}
+
+	private Vector2 getDesiredScreenPoint() {
 		Vector3 targetScreenPos = camera.WorldToScreenPoint(target.position);
-
-		Vector3 adjustment = new Vector3(0, 0, 0);
-
+		Vector2 screenPoint = targetScreenPos;
         if (targetScreenPos.y <= bottomBound) {
-        	Vector3 bottomBoundPosWorld = camera.ScreenToWorldPoint(new Vector2(0, bottomBound));
-        	float bottomBoundWorld = bottomBoundPosWorld.y;
-        	adjustment.y = target.position.y - bottomBoundWorld;
+        	screenPoint.y = bottomBound;
         }
         if (targetScreenPos.y >= topBound) {
-        	Vector3 topBoundPosWorld = camera.ScreenToWorldPoint(new Vector2(0, topBound));
-        	float topBoundWorld = topBoundPosWorld.y;
-        	adjustment.y = target.position.y - topBoundWorld;
+        	screenPoint.y = topBound;
         }
 
         if (targetScreenPos.x <= leftBound) {
-        	Vector3 leftBoundPosWorld = camera.ScreenToWorldPoint(new Vector2(leftBound, 0));
-        	float leftBoundWorld = leftBoundPosWorld.x;
-        	adjustment.x = target.position.x - leftBoundWorld;
+        	screenPoint.x = leftBound;
         }
         if (targetScreenPos.x >= rightBound) {
-        	Vector3 rightBoundPosWorld = camera.ScreenToWorldPoint(new Vector2(rightBound, 0));
-        	float rightBoundWorld = rightBoundPosWorld.x;
-        	adjustment.x = target.position.x - rightBoundWorld;
+        	screenPoint.x = rightBound;
         }
+        return screenPoint;
+	}
+
+
+	// Center target on a screen point
+	private void centerTargetOnScreenPoint(Vector2 screenPoint) {
+		// Screen point in world coordinates
+		Vector3 screenPointWorld = camera.ScreenToWorldPoint(screenPoint);
+		Vector3 adjustment = -1 * (screenPointWorld - target.position);
+		adjustment.z = 0;
 
 		transform.Translate(adjustment);
 	}
