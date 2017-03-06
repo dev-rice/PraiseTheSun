@@ -2697,9 +2697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 317228460}
-  kp: 0
-  ki: 0
-  kd: 0
 --- !u!1 &1144915963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3493,7 @@ Prefab:
     - target: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
         type: 2}
       propertyPath: snap
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
         type: 2}
