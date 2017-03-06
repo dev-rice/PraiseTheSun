@@ -87,7 +87,7 @@ public class Movable : MonoBehaviour {
         }
     }
 
-    void CacheTransformAndPixelSnap() {
+    protected void CacheTransformAndPixelSnap() {
         // Cache true position
         x_ = transform.position.x;
         y_ = transform.position.y;

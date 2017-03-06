@@ -120,8 +120,17 @@ public class SkeletonController : Movable {
         }
 
         if(health <= 0){
+            // set state and animation state
             state = SkeletonState.Dead;
             animator.SetTrigger("anim_death");
+
+            // turn off physics
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            // don't let snapping happen
+            CacheTransformAndPixelSnap();
+            snap = PixelSnap.Never;
         }
 
         // flip the sprite depending on direction
