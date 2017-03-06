@@ -35,6 +35,7 @@ public class SkeletonController : Movable {
     private float currentCooldown = 999.0f;
     public float attackSpeed = 0.0f;
     public GameObject axe;
+    public GameObject bloodParticles;
 
     [Header("Health Settings")]
     public int health;
@@ -139,9 +140,18 @@ public class SkeletonController : Movable {
 
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
+            // remove health
             health -= other.gameObject.GetComponent<WeaponDamage>().damage;
+
+            // Destroy weapon (if destructable!)
             Destroy(other.gameObject);
+
+            // play hit animation
             animator.SetTrigger("anim_hit");
+
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
         }
     }
 }

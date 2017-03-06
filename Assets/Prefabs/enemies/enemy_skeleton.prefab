@@ -115,6 +115,8 @@ MonoBehaviour:
   attackCooldown: 1
   attackSpeed: 1.5
   axe: {fileID: 1133564758149242, guid: 086ef4c1719ef9d4e9e9584c280a2622, type: 2}
+  bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
+    type: 2}
   health: 500
 --- !u!212 &212978444790441978
 SpriteRenderer:
