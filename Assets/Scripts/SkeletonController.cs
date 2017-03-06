@@ -141,10 +141,12 @@ public class SkeletonController : Movable {
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
             // remove health
-            health -= other.gameObject.GetComponent<WeaponDamage>().damage;
+            WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
+            health -= weapon.damage;
 
-            // Destroy weapon (if destructable!)
-            Destroy(other.gameObject);
+            if(weapon.destroyOnImpact){
+                Destroy(other.gameObject);
+            }
 
             // play hit animation
             animator.SetTrigger("anim_hit");

@@ -29,6 +29,11 @@ public class PlayerController : Movable {
 
     public PlayerDirection direction;
 
+    public GameObject bloodParticles;
+
+    [Header("Action Costs")]
+    public int jumpStaminaCost;
+
 	void Start () {
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		// sprite = GetComponent<SpriteRenderer>();
@@ -42,6 +47,7 @@ public class PlayerController : Movable {
 		Vector2 velocity = rigidbody2d.velocity;
 		if (IsGrounded()) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
+                health -= jumpStaminaCost;
 				velocity.y = jumpVelocity;
 			}
 		}
@@ -68,7 +74,7 @@ public class PlayerController : Movable {
 		Debug.Log("You are died.");
 		rigidbody2d.velocity = new Vector2(0, 0);
 		transform.position = bonfire.transform.position;
-		
+
 		isDead = false;
 	}
 
@@ -80,8 +86,16 @@ public class PlayerController : Movable {
 		}
 
         if(other.GetComponent<Collider2D>().tag == "Weapon" && health > 0.0f){
-            health -= other.GetComponent<WeaponDamage>().damage;
-            Destroy(other.gameObject);
+            WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
+            health -= weapon.damage;
+
+            if(weapon.destroyOnImpact){
+                Destroy(other.gameObject);
+            }
+
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
         }
 	}
 

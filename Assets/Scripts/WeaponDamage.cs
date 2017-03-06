@@ -3,5 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour {
+    public bool destroyOnImpact;
     public int damage;
 }

@@ -52,6 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxParticles: 20
-  maxStartSpeed: 5
+  maxStartSpeed: 3
   particlesInstance: {fileID: 1553497477824934, guid: 1947b61b842b83b4eb03c5728e0036c3,
     type: 2}
