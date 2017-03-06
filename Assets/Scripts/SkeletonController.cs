@@ -40,9 +40,14 @@ public class SkeletonController : Movable {
     [Header("Health Settings")]
     public int health;
 
+    [Header("Sound Effects")]
+    public AudioClip hitSound;
+    public AudioClip throwSound;
+
     // component references
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private AudioSource audioSource;
 
     // gameobject references
     private GameObject player;
@@ -54,6 +59,7 @@ public class SkeletonController : Movable {
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindWithTag("Player");
         if(!player){
@@ -82,8 +88,10 @@ public class SkeletonController : Movable {
                     // clear current cooldown
                     currentCooldown = 0.0f;
 
-                    //  play throw animation
+                    //  play throw animation and sounds
                     animator.SetTrigger("anim_throw");
+                    audioSource.clip = throwSound;
+                    audioSource.Play();
 
                     // create axe
                     GameObject newAxe = Instantiate(axe);
@@ -148,8 +156,10 @@ public class SkeletonController : Movable {
                 Destroy(other.gameObject);
             }
 
-            // play hit animation
+            // play hit animation and sound
             animator.SetTrigger("anim_hit");
+            audioSource.clip = hitSound;
+            audioSource.Play();
 
             // Create blood
             GameObject blood = Instantiate(bloodParticles);

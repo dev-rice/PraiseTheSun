@@ -39,7 +39,10 @@ public class PlayerController : Movable {
 		// sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 		isDead = false;
-		bonfire.Light();
+        
+        if(bonfire){
+		    bonfire.Light();
+        }
 	}
 
 	// Update is called once per frame
@@ -73,7 +76,9 @@ public class PlayerController : Movable {
 	void die() {
 		Debug.Log("You are died.");
 		rigidbody2d.velocity = new Vector2(0, 0);
-		transform.position = bonfire.transform.position;
+        if(bonfire){
+            transform.position = bonfire.transform.position;
+        }
 
 		isDead = false;
 	}
