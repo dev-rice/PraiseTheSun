@@ -9,7 +9,7 @@ public class Bonfire : MonoBehaviour {
 	private Animator animator;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		isLit = false;
 		sprite = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
