@@ -58,7 +58,7 @@ public class PlayerController : Movable {
 			isDead = true;
 		}
 
-		if (isDead) {
+		if (isDead || health <= 0) {
 			die();
 		}
 	}
@@ -76,6 +76,11 @@ public class PlayerController : Movable {
 			new_bonfire.Light();
 			this.bonfire = new_bonfire;
 		}
+
+        if(other.GetComponent<Collider2D>().tag == "Weapon" && health > 0.0f){
+            health -= other.GetComponent<WeaponDamage>().damage;
+            Destroy(other.gameObject);
+        }
 	}
 
 	private float smoothVelocityX(float current_x_velocity, float target_velocity_x) {

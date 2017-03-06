@@ -128,10 +128,10 @@ public class SkeletonController : Movable {
         spriteRenderer.flipX = (direction == SkeletonDirection.Left);
 	}
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
-            health -= collider.gameObject.GetComponent<WeaponDamage>().damage;
-            Destroy(collider.gameObject);
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
+            health -= other.gameObject.GetComponent<WeaponDamage>().damage;
+            Destroy(other.gameObject);
             animator.SetTrigger("anim_hit");
         }
     }
