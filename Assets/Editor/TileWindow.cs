@@ -11,7 +11,7 @@ public class TileWindow : EditorWindow
 {
 	private static bool isEnabled;
 	private Vector2 _scrollPos;
-	private static Vector2 gridSize = new Vector2(0.16f, 0.16f);
+	private static Vector2 gridSize = new Vector2(1.0f, 1.0f);
 	private static bool isGrid;
 	private static bool isDraw;
 	private static bool addBoxCollider;

@@ -112,10 +112,10 @@ MonoBehaviour:
   patrolSize: 3
   moveSpeed: 3
   attackDistance: 3
-  attackCooldown: 1.5
+  attackCooldown: 1
   attackSpeed: 1.5
   axe: {fileID: 1133564758149242, guid: 086ef4c1719ef9d4e9e9584c280a2622, type: 2}
-  health: 0
+  health: 500
 --- !u!212 &212978444790441978
 SpriteRenderer:
   m_ObjectHideFlags: 1

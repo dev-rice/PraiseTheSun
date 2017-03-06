@@ -46,13 +46,6 @@ public class SkeletonController : Movable {
     // gameobject references
     private GameObject player;
 
-    // sprite references
-    [Header("Sprites")]
-    public Sprite idleSprite;
-    public Sprite throwSprite;
-    public Sprite hitSprite;
-    public Sprite deathSprite;
-
 	void Start () {
         // Setup patrol bounds
         leftBound = transform.position.x - patrolSize;
@@ -127,18 +120,27 @@ public class SkeletonController : Movable {
         }
 
         if(health <= 0){
+            // set state and animation state
             state = SkeletonState.Dead;
             animator.SetTrigger("anim_death");
+
+            // turn off physics
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            // don't let snapping happen
+            CacheTransformAndPixelSnap();
+            snap = PixelSnap.Never;
         }
 
         // flip the sprite depending on direction
         spriteRenderer.flipX = (direction == SkeletonDirection.Left);
 	}
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
-            health -= collider.gameObject.GetComponent<WeaponDamage>().damage;
-            Destroy(collider.gameObject);
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
+            health -= other.gameObject.GetComponent<WeaponDamage>().damage;
+            Destroy(other.gameObject);
             animator.SetTrigger("anim_hit");
         }
     }

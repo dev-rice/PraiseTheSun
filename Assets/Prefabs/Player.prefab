@@ -75,9 +75,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: bfdaab5804ead40968e711b0cee9700c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.1, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.625, y: 1}
 --- !u!95 &95480406262667840
 Animator:
   serializedVersion: 3
@@ -106,9 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949855531a52642498b2c821cdd0747d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snap: 1
+  snap: 3
   moveSpeed: 3
   jumpVelocity: 5
+  health: 500
   bonfire: {fileID: 0}
   direction: 0
 --- !u!212 &212714616725296102

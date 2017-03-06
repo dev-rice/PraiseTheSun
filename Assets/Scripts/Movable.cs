@@ -14,7 +14,6 @@ public class Movable : MonoBehaviour {
     [Header("Pixel Snapping (in order of execution)")]
     public PixelSnap snap;
 
-
     // Overrides pre and post rendering to fix up pixel positions
     protected float x_;
     protected float y_;
@@ -88,7 +87,7 @@ public class Movable : MonoBehaviour {
         }
     }
 
-    void CacheTransformAndPixelSnap() {
+    protected void CacheTransformAndPixelSnap() {
         // Cache true position
         x_ = transform.position.x;
         y_ = transform.position.y;
