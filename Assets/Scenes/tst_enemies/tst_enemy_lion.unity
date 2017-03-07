@@ -1503,50 +1503,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: chargeSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 411956049898e7447ba2eb6788a7e6a1,
-        type: 3}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: sleepSprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 411956049898e7447ba2eb6788a7e6a1,
-        type: 3}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: alertSprite
-      value: 
-      objectReference: {fileID: 21300004, guid: 411956049898e7447ba2eb6788a7e6a1,
-        type: 3}
-    - target: {fileID: 212045439111699652, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 411956049898e7447ba2eb6788a7e6a1,
-        type: 3}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: alertDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: alertTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: chargeDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
-        type: 2}
-      propertyPath: chargeSpeed
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 066290dc70542304083e9600106b6317, type: 2}
   m_IsPrefabParent: 0
