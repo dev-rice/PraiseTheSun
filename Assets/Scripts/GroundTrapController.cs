@@ -39,6 +39,7 @@ public class GroundTrapController : Movable {
 
     void LateUpdate(){
         if(triggered){
+            // Override trapped character position
             trappedObject.transform.position = transform.position + new Vector3(0.5f, 0.5f, 0.0f);
         }
     }

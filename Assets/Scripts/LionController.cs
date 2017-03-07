@@ -32,6 +32,10 @@ public class LionController : Movable {
     public float alertDistance;
     public float alertTime;
     private float currentAlertTime;
+    public GameObject bloodParticles;
+
+    [Header("Health Settings")]
+    public int health;
 
     [Header("TEMPORARY sprites")]
     public Sprite sleepSprite;
@@ -93,5 +97,34 @@ public class LionController : Movable {
                 currentAlertTime = 0.0f;
             }
         }
+
+        if(health <= 0){
+            // set state
+            state = LionState.Dead;
+
+            // turn off physics
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            // don't let snapping happen
+            CacheTransformAndPixelSnap();
+            snap = PixelSnap.Never;
+        }
 	}
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Weapon" && health > 0){
+            // remove health
+            WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
+            health -= weapon.damage;
+
+            if(weapon.destroyOnImpact){
+                Destroy(other.gameObject);
+            }
+
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
+        }
+    }
 }
