@@ -30,7 +30,7 @@ public class Movable : MonoBehaviour {
     //##########################################################################
     // Left, Right, and Ground detection
     //##########################################################################
-    protected bool IsGrounded() {
+    public bool IsGrounded() {
         Vector3 rightprobe = new Vector2(transform.position.x + halfwidth,
                                          transform.position.y - halfspriteheight);
 

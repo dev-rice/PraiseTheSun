@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikeTrapController : Movable {
 
     public Sprite bloodiedSprite;
-    public int damage;
+    public GameObject spikeWeapon;
     private bool triggered;
 
     private GameObject target;
@@ -15,16 +15,25 @@ public class SpikeTrapController : Movable {
         if(collider.gameObject.tag == "Player" || collider.gameObject.tag == "Enemy"){
             if(collider.gameObject.GetComponent<Rigidbody2D>().velocity.y < 0.0f){
                 triggered = true;
+
                 GetComponent<SpriteRenderer>().sprite = bloodiedSprite;
+
                 target = collider.gameObject;
                 targetx = collider.gameObject.transform.position.x;
+
+                GameObject weapon = Instantiate(spikeWeapon);
+                weapon.transform.position = transform.position;
             }
         }
     }
 
     void LateUpdate(){
         if(triggered){
-            target.transform.position = new Vector3(targetx, target.transform.position.y, 0.0f);
+            Movable movable = target.GetComponent<Movable>();
+            if(movable){
+                target.transform.position = new Vector3(targetx, target.transform.position.y, 0.0f);
+                triggered = !movable.IsGrounded();
+            }
         }
     }
 }

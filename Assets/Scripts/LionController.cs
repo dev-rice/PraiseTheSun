@@ -59,6 +59,18 @@ public class LionController : Movable {
 
 	void Update () {
         if(state == LionState.Dead){
+            if(!IsGrounded()){
+                return;
+            }
+
+            // turn off physics
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            // don't let snapping happen
+            CacheTransformAndPixelSnap();
+            snap = PixelSnap.Never;
+
             return;
         }
 
@@ -101,14 +113,6 @@ public class LionController : Movable {
         if(health <= 0){
             // set state
             state = LionState.Dead;
-
-            // turn off physics
-            GetComponent<Rigidbody2D>().simulated = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-
-            // don't let snapping happen
-            CacheTransformAndPixelSnap();
-            snap = PixelSnap.Never;
         }
 	}
 

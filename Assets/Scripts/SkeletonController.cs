@@ -69,6 +69,18 @@ public class SkeletonController : Movable {
 
 	void Update () {
         if(state == SkeletonState.Dead){
+            if(!IsGrounded()){
+                return;
+            }
+
+            // turn off physics
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            // don't let snapping happen
+            CacheTransformAndPixelSnap();
+            snap = PixelSnap.Never;
+
             return;
         }
         // increment current cooldown regardless of state
@@ -132,14 +144,6 @@ public class SkeletonController : Movable {
             // set state and animation state
             state = SkeletonState.Dead;
             animator.SetTrigger("anim_death");
-
-            // turn off physics
-            GetComponent<Rigidbody2D>().simulated = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-
-            // don't let snapping happen
-            CacheTransformAndPixelSnap();
-            snap = PixelSnap.Never;
         }
 
         // flip the sprite depending on direction

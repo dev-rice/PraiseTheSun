@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4524339808183092}
   - component: {fileID: 212100722586088150}
   - component: {fileID: 61917416982914942}
+  - component: {fileID: 114360944730950328}
   m_Layer: 0
   m_Name: enemy_trap_spikes
   m_TagString: Untagged
@@ -55,6 +56,21 @@ BoxCollider2D:
   m_Offset: {x: 0.5, y: 0.34375}
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.6875}
+--- !u!114 &114360944730950328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1597977871325340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95467fd91fe28d24c983bf89ea06f44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snap: 0
+  bloodiedSprite: {fileID: 21300002, guid: 0bf2af0e0cd65d342888061fc9619623, type: 3}
+  spikeWeapon: {fileID: 1217697641820164, guid: 32884e7b0d0c77443aefedd1f0ebe7bf,
+    type: 2}
 --- !u!212 &212100722586088150
 SpriteRenderer:
   m_ObjectHideFlags: 1
