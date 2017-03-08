@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public Transform target;
-
 	public enum CameraMode {
 		TrackOnFocusPoint,
 		ConstrainTargetToBounds
-	}
-	public CameraMode cameraMode;
+	}	
 
-	public Vector2 focusPoint;
-
+	[Header("Tracking Settings")]
+	public Transform target;
 	public float cameraAdjustSpeed;
 
+	[Header("Camera Modes")]
+	public CameraMode cameraMode;
+
+	[Header("Focus Point")]
+	public Vector2 focusPoint;
+
+	[Header("Bounds")]
+	public Vector2 bottomLeftBound;
+	public Vector2 topRightBound;
+
 	private Camera camera_;
-
-	private Vector2 bottomLeftBound;
-	private Vector2 topRightBound;
-
+	
 	private float bottomBound;
 	private float topBound;
 
@@ -31,14 +35,14 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		camera_ = GetComponent<Camera>();
 
-		bottomLeftBound = screenRatioToPixels(new Vector2(1.0f/3.0f, 1.0f/3.0f));
-		topRightBound = screenRatioToPixels(new Vector2(2.0f/3.0f, 2.0f/3.0f));
+		Vector2 bottomLeftBoundPx = screenRatioToPixels(bottomLeftBound);
+		Vector2 topRightBoundPx = screenRatioToPixels(topRightBound);
 
-		bottomBound = bottomLeftBound.y;
-		leftBound = bottomLeftBound.x;
+		bottomBound = bottomLeftBoundPx.y;
+		leftBound = bottomLeftBoundPx.x;
 		
-		topBound = topRightBound.y;		
-		rightBound = topRightBound.x;
+		topBound = topRightBoundPx.y;		
+		rightBound = topRightBoundPx.x;
 
 	}
 
@@ -54,6 +58,7 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	// TODO: Should the focus point be dependent on player direction? For example when the player is moving right we want focus.x to be 1/3, when the player is moving left should the focus be 2/3? Maybe there should be a left and right focus point defined in here.
 	private void trackOnFocusPoint() {
 		centerTargetOnScreenPoint(screenRatioToPixels(focusPoint));
 	}
