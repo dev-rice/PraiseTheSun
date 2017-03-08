@@ -6,7 +6,20 @@ public class CameraController : MonoBehaviour {
 
 	public Transform target;
 
+	public enum CameraMode {
+		TrackOnFocusPoint,
+		ConstrainTargetToBounds
+	}
+	public CameraMode cameraMode;
+
+	public Vector2 focusPoint;
+
+	public float cameraAdjustSpeed;
+
 	private Camera camera_;
+
+	private Vector2 bottomLeftBound;
+	private Vector2 topRightBound;
 
 	private float bottomBound;
 	private float topBound;
@@ -18,15 +31,34 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		camera_ = GetComponent<Camera>();
 
-		bottomBound = 1.0f * camera_.pixelHeight / 3.0f;
-		topBound = 2.0f * camera_.pixelHeight / 3.0f;
+		bottomLeftBound = screenRatioToPixels(new Vector2(1.0f/3.0f, 1.0f/3.0f));
+		topRightBound = screenRatioToPixels(new Vector2(2.0f/3.0f, 2.0f/3.0f));
 
-		leftBound = 1.0f * camera_.pixelWidth / 3.0f;
-		rightBound = 2.0f * camera_.pixelWidth / 3.0f;
+		bottomBound = bottomLeftBound.y;
+		leftBound = bottomLeftBound.x;
+		
+		topBound = topRightBound.y;		
+		rightBound = topRightBound.x;
+
 	}
 
 	// Update is called once per frame
 	void Update () {
+		switch (cameraMode) {
+			case CameraMode.TrackOnFocusPoint:
+				trackOnFocusPoint();
+				break;
+			case CameraMode.ConstrainTargetToBounds:
+				constrainTargetToBounds();
+				break;
+		}
+	}
+
+	private void trackOnFocusPoint() {
+		centerTargetOnScreenPoint(screenRatioToPixels(focusPoint));
+	}
+
+	private void constrainTargetToBounds() {
 		centerTargetOnScreenPoint(getDesiredScreenPoint());
 	}
 
@@ -57,6 +89,11 @@ public class CameraController : MonoBehaviour {
 		Vector3 adjustment = -1 * (screenPointWorld - target.position);
 		adjustment.z = 0;
 
-		transform.Translate(adjustment);
+		Vector3 adjusted = transform.position + adjustment;
+		transform.position = Vector3.Lerp(transform.position, adjusted, cameraAdjustSpeed * Time.deltaTime);
+	}
+
+	private Vector2 screenRatioToPixels(Vector2 screenRatio) {
+		return new Vector2(screenRatio.x * camera_.pixelWidth, screenRatio.y * camera_.pixelHeight);
 	}
 }
