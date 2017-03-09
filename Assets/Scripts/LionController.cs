@@ -28,7 +28,6 @@ public class LionController : Movable {
     [Header("Attack Settings")]
     public float chargeDistance;
     public float chargeSpeed;
-    private float chargeStart;
     public float alertDistance;
     public float alertTime;
     private float currentAlertTime;
@@ -37,18 +36,15 @@ public class LionController : Movable {
     [Header("Health Settings")]
     public int health;
 
-    [Header("TEMPORARY sprites")]
-    public Sprite sleepSprite;
-    public Sprite alertSprite;
-    public Sprite chargeSprite;
-    private SpriteRenderer spriteRenderer;
-
     // component references
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     // gameobject references
     private GameObject player;
 
 	void Start () {
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         player = GameObject.FindWithTag("Player");
@@ -63,6 +59,8 @@ public class LionController : Movable {
                 return;
             }
 
+            animator.SetTrigger("anim_sleep");
+
             // turn off physics
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<BoxCollider2D>().enabled = false;
@@ -75,43 +73,48 @@ public class LionController : Movable {
         }
 
         // In the jungle, the mighty jungle
-        if(state == LionState.Sleeping){
-            spriteRenderer.sprite = sleepSprite;
+        if(IsGrounded()){
+            if(state == LionState.Sleeping){
+                animator.SetTrigger("anim_sleep");
 
-            if((transform.position - player.transform.position).magnitude < alertDistance){
-                state = LionState.Alert;
-                currentAlertTime = 0.0f;
-            }
-        } else if(state == LionState.Alert){
-            spriteRenderer.sprite = alertSprite;
+                if((transform.position - player.transform.position).magnitude < alertDistance){
+                    state = LionState.Alert;
+                    currentAlertTime = 0.0f;
+                }
+            } else if(state == LionState.Alert){
+                animator.SetTrigger("anim_alert");
 
-            currentAlertTime += Time.deltaTime;
+                currentAlertTime += Time.deltaTime;
 
-            if(currentAlertTime > alertTime){
-                state = (transform.position - player.transform.position).magnitude < alertDistance ? LionState.Charging : LionState.Sleeping;
+                if(currentAlertTime > alertTime){
+                    currentAlertTime = 0.0f;
 
-                // If newly charging, setup state
-                if(state == LionState.Charging){
-                    spriteRenderer.sprite = chargeSprite;
+                    state = (transform.position - player.transform.position).magnitude < alertDistance ? LionState.Charging : LionState.Sleeping;
 
-                    direction = transform.position.x > player.transform.position.x ? LionDirection.Left : LionDirection.Right;
-                    spriteRenderer.flipX = direction == LionDirection.Left;
+                    // If newly charging, setup state
+                    if(state == LionState.Charging){
+                        direction = transform.position.x > player.transform.position.x ? LionDirection.Left : LionDirection.Right;
+                        spriteRenderer.flipX = direction == LionDirection.Left;
+                    }
+                }
+            } else if(state == LionState.Charging){
+                animator.SetTrigger("anim_run");
 
-                    chargeStart = transform.position.x;
+                float newx = direction == LionDirection.Left ? transform.position.x - chargeSpeed * Time.deltaTime : transform.position.x + chargeSpeed * Time.deltaTime;
+                transform.position = new Vector3(newx, transform.position.y, 0.0f);
+
+                if((transform.position - player.transform.position).magnitude > alertDistance){
+                    state = LionState.Alert;
                 }
             }
-        } else if(state == LionState.Charging){
+        } else {
             float newx = direction == LionDirection.Left ? transform.position.x - chargeSpeed * Time.deltaTime : transform.position.x + chargeSpeed * Time.deltaTime;
             transform.position = new Vector3(newx, transform.position.y, 0.0f);
 
-            if(Mathf.Abs(transform.position.x - chargeStart) > chargeDistance){
-                state = LionState.Alert;
-                currentAlertTime = 0.0f;
-            }
+            animator.SetTrigger("anim_jump");
         }
 
         if(health <= 0){
-            // set state
             state = LionState.Dead;
         }
 	}
