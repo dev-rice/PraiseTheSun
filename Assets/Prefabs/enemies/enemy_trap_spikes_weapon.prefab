@@ -67,4 +67,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnImpact: 1
+  destroyAfterTime: 1
   damage: 500
