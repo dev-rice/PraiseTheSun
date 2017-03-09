@@ -6,6 +6,8 @@ using UnityEngine;
 public class WeaponDamage : MonoBehaviour {
     public bool destroyOnImpact;
     public bool destroyAfterTime;
+    public bool hurtCreator;
+    public GameObject creator;
     public int damage;
     private int frames = 15;
 

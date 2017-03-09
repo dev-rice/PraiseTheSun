@@ -133,7 +133,12 @@ public class LionController : Movable {
         if(other.tag == "Weapon" && health > 0){
             // remove health
             WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
-            health -= weapon.damage;
+
+            if(!weapon.hurtCreator || weapon.creator == gameObject){
+                health -= weapon.damage;
+            } else {
+                return;
+            }
 
             if(weapon.destroyOnImpact){
                 Destroy(other.gameObject);

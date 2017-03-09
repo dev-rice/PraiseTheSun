@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnImpact: 1
+  destroyAfterTime: 0
+  hurtCreator: 1
+  creator: {fileID: 0}
   damage: 250
 --- !u!212 &212650623390766954
 SpriteRenderer:

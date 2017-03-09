@@ -109,6 +109,7 @@ public class SkeletonController : Movable {
                     GameObject newAxe = Instantiate(axe);
                     Rigidbody2D axeRigidbody = newAxe.GetComponent<Rigidbody2D>();
                     newAxe.transform.position = transform.position;
+                    newAxe.GetComponent<WeaponDamage>().creator = gameObject;
                     newAxe.GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
 
                     // throw axe in arc at player
@@ -154,7 +155,12 @@ public class SkeletonController : Movable {
         if(other.tag == "Weapon" && currentCooldown > 0.1f && health > 0.0f){
             // remove health
             WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
-            health -= weapon.damage;
+
+            if(!weapon.hurtCreator || weapon.creator == gameObject){
+                health -= weapon.damage;
+            } else {
+                return;
+            }
 
             if(weapon.destroyOnImpact){
                 Destroy(other.gameObject);
