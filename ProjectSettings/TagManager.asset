@@ -17,6 +17,12 @@ TagManager:
   - Weap
   - Weapo
   - Weapon
+  - Bonfire
+  - E
+  - En
+  - Ene
+  - Enem
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -62,4 +68,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 2397342211
+    locked: 0
+  - name: Environment
+    uniqueID: 2714151261
     locked: 0

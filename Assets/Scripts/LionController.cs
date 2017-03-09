@@ -36,9 +36,14 @@ public class LionController : Movable {
     [Header("Health Settings")]
     public int health;
 
+    [Header("Sound Effects")]
+    public AudioClip growlSound;
+    public AudioClip hitSound;
+
     // component references
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     // gameobject references
     private GameObject player;
@@ -46,6 +51,7 @@ public class LionController : Movable {
 	void Start () {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindWithTag("Player");
         if(!player){
@@ -91,10 +97,14 @@ public class LionController : Movable {
 
                     state = (transform.position - player.transform.position).magnitude < alertDistance ? LionState.Charging : LionState.Sleeping;
 
-                    // If newly charging, setup state
                     if(state == LionState.Charging){
+                        // If newly charging, setup state
                         direction = transform.position.x > player.transform.position.x ? LionDirection.Left : LionDirection.Right;
                         spriteRenderer.flipX = direction == LionDirection.Left;
+
+                        // play sound
+                        audioSource.clip = growlSound;
+                        audioSource.Play();
                     }
                 }
             } else if(state == LionState.Charging){
@@ -128,6 +138,10 @@ public class LionController : Movable {
             if(weapon.destroyOnImpact){
                 Destroy(other.gameObject);
             }
+
+            // play sound
+            audioSource.clip = hitSound;
+            audioSource.Play();
 
             // Create blood
             GameObject blood = Instantiate(bloodParticles);
