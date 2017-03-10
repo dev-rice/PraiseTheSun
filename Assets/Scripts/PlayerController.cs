@@ -41,7 +41,7 @@ public class PlayerController : Movable {
 		// sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 		isDead = false;
-        
+
         if(bonfire){
 		    bonfire.Light();
         }
@@ -87,9 +87,9 @@ public class PlayerController : Movable {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == BONFIRE_TAG) {
-			
+
 			Bonfire new_bonfire = (Bonfire)other.gameObject.GetComponent<Bonfire>();
-			
+
 			if (!new_bonfire.isLit()) {
 				new_bonfire.Light();
 				banner.showMessage("BONFIRE LIT");
