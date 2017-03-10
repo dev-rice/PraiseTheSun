@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour {
 
+    public float scaleFactor = 1.0f;
     private float originalWidth = 1.0f / 16.0f;
 
     public PlayerController player;
@@ -11,7 +12,7 @@ public class UIController : MonoBehaviour {
     public GameObject rightBar;
 
 	void Update () {
-        float scalex = (float)player.health / 10.0f;
+        float scalex = scaleFactor * (float)player.health / 10.0f;
         scalex = Mathf.Max(1.0f, scalex);
 
         float halfwidth = scalex * originalWidth * 0.5f;
