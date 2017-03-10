@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: f0b0ee23789c9544e8fe992adbd45514
-timeCreated: 1489079678
+timeCreated: 1489124716
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: gorilla_sheet_0
     21300002: gorilla_sheet_1
     21300004: gorilla_sheet_2
+    21300006: gorilla_sheet_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,7 +82,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -94,7 +95,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -107,7 +108,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gorilla_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
