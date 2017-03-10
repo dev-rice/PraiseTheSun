@@ -10,6 +10,8 @@ public class PlayerController : Movable {
 
     public Bonfire bonfire;
 
+    public MessageBanner banner;
+
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
 
@@ -74,7 +76,7 @@ public class PlayerController : Movable {
 	}
 
 	void die() {
-		Debug.Log("You are died.");
+		banner.showMessage("YOU DIED");
 		rigidbody2d.velocity = new Vector2(0, 0);
         if(bonfire){
             transform.position = bonfire.transform.position;
@@ -85,8 +87,14 @@ public class PlayerController : Movable {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == BONFIRE_TAG) {
+			
 			Bonfire new_bonfire = (Bonfire)other.gameObject.GetComponent<Bonfire>();
-			new_bonfire.Light();
+			
+			if (!new_bonfire.isLit()) {
+				new_bonfire.Light();
+				banner.showMessage("BONFIRE LIT");
+			}
+
 			this.bonfire = new_bonfire;
 		}
 
