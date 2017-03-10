@@ -32,6 +32,8 @@ public class LionController : Movable {
     public float alertTime;
     private float currentAlertTime;
     public GameObject bloodParticles;
+    public GameObject lionWeapon;
+    private GameObject lionWeaponInstance;
 
     [Header("Health Settings")]
     public int health;
@@ -110,11 +112,18 @@ public class LionController : Movable {
             } else if(state == LionState.Charging){
                 animator.SetTrigger("anim_run");
 
+                Destroy(lionWeaponInstance);
+                lionWeaponInstance = Instantiate(lionWeapon);
+                lionWeaponInstance.transform.position = transform.position;
+                lionWeapon.transform.localScale = direction == LionDirection.Left ? new Vector3(-1.0f, 1.0f, 1.0f) : new Vector3(1.0f, 1.0f, 1.0f);
+                lionWeaponInstance.transform.parent = transform;
+
                 float newx = direction == LionDirection.Left ? transform.position.x - chargeSpeed * Time.deltaTime : transform.position.x + chargeSpeed * Time.deltaTime;
                 transform.position = new Vector3(newx, transform.position.y, 0.0f);
 
                 if((transform.position - player.transform.position).magnitude > alertDistance){
                     state = LionState.Alert;
+                    Destroy(lionWeaponInstance);
                 }
             }
         } else {

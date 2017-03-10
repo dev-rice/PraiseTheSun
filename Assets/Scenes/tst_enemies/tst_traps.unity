@@ -1119,6 +1119,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114228628389992486, guid: 066290dc70542304083e9600106b6317,
+        type: 2}
+      propertyPath: lionWeapon
+      value: 
+      objectReference: {fileID: 1357464432813272, guid: 80b755c1d6b85614d83b397814f85076,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 066290dc70542304083e9600106b6317, type: 2}
   m_IsPrefabParent: 0

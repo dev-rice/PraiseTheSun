@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1213219490832036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.49, y: -2.5, z: 0}
+  m_LocalPosition: {x: 8, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   alertTime: 1
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
+  lionWeapon: {fileID: 1357464432813272, guid: 80b755c1d6b85614d83b397814f85076, type: 2}
   health: 500
   growlSound: {fileID: 8300000, guid: fc1bb15a1666f1345b6c6c1f7b96dff6, type: 3}
   hitSound: {fileID: 8300000, guid: d47316b6c1350f14795d67fee3501f39, type: 3}
