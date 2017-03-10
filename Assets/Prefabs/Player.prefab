@@ -106,11 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949855531a52642498b2c821cdd0747d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snap: 3
+  snap: 1
   moveSpeed: 3
   jumpVelocity: 5
   health: 1000
   bonfire: {fileID: 0}
+  banner: {fileID: 0}
   direction: 0
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
