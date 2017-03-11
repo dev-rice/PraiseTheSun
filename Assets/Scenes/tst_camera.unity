@@ -5451,6 +5451,58 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &2037594803
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670508408554002, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084678771786008, guid: db81c30dce3ebc64b8a9217db62d43de,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2093772958}
+    - target: {fileID: 114084678771786008, guid: db81c30dce3ebc64b8a9217db62d43de,
+        type: 2}
+      propertyPath: camera_
+      value: 
+      objectReference: {fileID: 2093772958}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2066077092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,6 +5582,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &2093772958 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1144758891603698, guid: bdf09459c18c3e54d816d2ded4c262c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 929294417}
 --- !u!1 &2112548091
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,6 +67,8 @@ public class LionController : Movable {
                 return;
             }
 
+            Destroy(lionWeaponInstance);
+
             animator.SetTrigger("anim_sleep");
 
             // turn off physics
