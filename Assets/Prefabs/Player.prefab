@@ -112,6 +112,8 @@ MonoBehaviour:
   health: 1000
   bonfire: {fileID: 0}
   banner: {fileID: 0}
+  healtPickupPrefab: {fileID: 1880266799632012, guid: 9a4ae469cac064cf2855f3423476a9b1,
+    type: 2}
   direction: 0
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
