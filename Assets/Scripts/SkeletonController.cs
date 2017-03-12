@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (Enemy))]
 public class SkeletonController : Movable {
     // Skeletons patrol a given path, until the player is within a certain distance.
     // Then, the skeleton throws an axe at the player until the player runs away or is dead
@@ -52,6 +53,9 @@ public class SkeletonController : Movable {
     // gameobject references
     private GameObject player;
 
+    // enemy reference (for dying/respawning)
+    private Enemy enemy;
+
 	void Start () {
         // Setup patrol bounds
         leftBound = transform.position.x - patrolSize;
@@ -65,6 +69,8 @@ public class SkeletonController : Movable {
         if(!player){
             Debug.LogError("Couldn't find player gameobject.");
         }
+        
+        enemy = GetComponent<Enemy>();
 	}
 
 	void Update () {
@@ -145,6 +151,7 @@ public class SkeletonController : Movable {
             // set state and animation state
             state = SkeletonState.Dead;
             animator.SetTrigger("anim_death");
+            enemy.die();
         }
 
         // flip the sprite depending on direction
