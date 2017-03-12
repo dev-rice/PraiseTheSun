@@ -7,15 +7,28 @@ public class PlayerController : Movable {
     public float moveSpeed = 3.0f;
     public float jumpVelocity = 8.0f;
     public int health;
+    private const int BASE_HEATLH = 1000;
 
     public Bonfire bonfire;
 
     public MessageBanner banner;
 
+    public GameObject healtPickupPrefab;
+
+	public enum PlayerDirection {
+        Right,
+        Left
+    }
+    public PlayerDirection direction;
+
+    public GameObject bloodParticles;
+    public GameObject healthPickupParticles;
+
+    [Header("Action Costs")]
+    public int jumpStaminaCost;
+
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
-
-    // private SpriteRenderer sprite;
 
     private Rigidbody2D rigidbody2d;
 
@@ -23,22 +36,15 @@ public class PlayerController : Movable {
 
     private bool isDead;
     private const string BONFIRE_TAG = "Bonfire";
+    private const string WEAPON_TAG = "Weapon";
+    private const string HEALTH_PICKUP_TAG = "HealthPickup";
 
-    public enum PlayerDirection {
-        Right,
-        Left
-    }
-
-    public PlayerDirection direction;
-
-    public GameObject bloodParticles;
-
-    [Header("Action Costs")]
-    public int jumpStaminaCost;
+    private int healthPickedUpSinceLastDeath = 0;
 
 	void Start () {
+		health = BASE_HEATLH;
+
 		rigidbody2d = GetComponent<Rigidbody2D>();
-		// sprite = GetComponent<SpriteRenderer>();
 		direction = PlayerDirection.Right;
 		isDead = false;
 
@@ -69,20 +75,39 @@ public class PlayerController : Movable {
 		if (Input.GetKeyDown(KeyCode.K)) {
 			isDead = true;
 		}
+		if (health <= 0) {
+			isDead = true;
+		}
 
-		if (isDead || health <= 0) {
+
+		if (isDead) {
 			die();
 		}
 	}
 
 	void die() {
 		banner.showMessage("YOU DIED");
+		
 		rigidbody2d.velocity = new Vector2(0, 0);
+		if (healthPickedUpSinceLastDeath > 0) {
+			dropHealthPickup();			
+		}
+        
         if(bonfire){
             transform.position = bonfire.transform.position;
+            direction = PlayerDirection.Right;
         }
 
+        health = BASE_HEATLH;
+        healthPickedUpSinceLastDeath = 0;
 		isDead = false;
+	}
+
+	void dropHealthPickup() {
+		GameObject g = Instantiate(healtPickupPrefab);
+		g.transform.position = transform.position;
+		HealthPickup h = (HealthPickup)g.GetComponent<HealthPickup>();
+		h.amount = healthPickedUpSinceLastDeath;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -98,7 +123,7 @@ public class PlayerController : Movable {
 			this.bonfire = new_bonfire;
 		}
 
-        if(other.GetComponent<Collider2D>().tag == "Weapon" && health > 0.0f){
+        if(other.GetComponent<Collider2D>().tag == WEAPON_TAG && health > 0.0f){
             WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
             health -= weapon.damage;
 
@@ -109,6 +134,20 @@ public class PlayerController : Movable {
             // Create blood
             GameObject blood = Instantiate(bloodParticles);
             blood.transform.position = transform.position;
+        }
+
+        if (other.tag == HEALTH_PICKUP_TAG) {
+        	HealthPickup h = (HealthPickup)other.gameObject.GetComponent<HealthPickup>();
+        	Debug.Log("picking up " + h.amount + " health");
+
+        	health += h.amount;
+        	healthPickedUpSinceLastDeath += h.amount;
+        	Destroy(h.gameObject);
+
+        	GameObject particles = Instantiate(healthPickupParticles);
+            particles.transform.position = transform.position;
+            particles.GetComponent<ParticleImplodeController>().target = transform;
+
         }
 	}
 
