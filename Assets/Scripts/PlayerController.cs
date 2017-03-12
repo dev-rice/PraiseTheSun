@@ -22,6 +22,7 @@ public class PlayerController : Movable {
     public PlayerDirection direction;
 
     public GameObject bloodParticles;
+    public GameObject healthPickupParticles;
 
     [Header("Action Costs")]
     public int jumpStaminaCost;
@@ -88,7 +89,9 @@ public class PlayerController : Movable {
 		banner.showMessage("YOU DIED");
 		
 		rigidbody2d.velocity = new Vector2(0, 0);
-		dropHealthPickup();
+		if (healthPickedUpSinceLastDeath > 0) {
+			dropHealthPickup();			
+		}
         
         if(bonfire){
             transform.position = bonfire.transform.position;
@@ -136,9 +139,14 @@ public class PlayerController : Movable {
         if (other.tag == HEALTH_PICKUP_TAG) {
         	HealthPickup h = (HealthPickup)other.gameObject.GetComponent<HealthPickup>();
         	Debug.Log("picking up " + h.amount + " health");
+
         	health += h.amount;
         	healthPickedUpSinceLastDeath += h.amount;
         	Destroy(h.gameObject);
+
+        	GameObject particles = Instantiate(healthPickupParticles);
+            particles.transform.position = transform.position;
+            particles.GetComponent<ParticleImplodeController>().target = transform;
 
         }
 	}

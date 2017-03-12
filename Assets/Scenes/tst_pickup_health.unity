@@ -135,6 +135,21 @@ Prefab:
       propertyPath: amount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
   m_IsPrefabParent: 0
@@ -1250,7 +1265,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.49718854, g: 0.52115774, b: 0.5588235, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1369,6 +1384,72 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &736401543
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052416585266438, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114316599899554760, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: amount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212017819119330234, guid: 9a4ae469cac064cf2855f3423476a9b1,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880266799632012, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+      propertyPath: m_Name
+      value: HealthPickup (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9a4ae469cac064cf2855f3423476a9b1, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &778097386 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
@@ -2557,6 +2638,12 @@ Prefab:
       propertyPath: banner
       value: 
       objectReference: {fileID: 1079611374}
+    - target: {fileID: 114727917932033244, guid: f876ece6a3c2e42fbb277271b3d8a498,
+        type: 2}
+      propertyPath: healthPickupParticles
+      value: 
+      objectReference: {fileID: 1512175858202064, guid: 32ea22af2350f42b38a78e14926796bd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f876ece6a3c2e42fbb277271b3d8a498, type: 2}
   m_IsPrefabParent: 0
