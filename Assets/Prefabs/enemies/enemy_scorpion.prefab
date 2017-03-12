@@ -171,6 +171,7 @@ MonoBehaviour:
   speed: 3
   playerNearDistance: 3
   playerFarDistance: 8
+  idleTime: 5
   health: 0
   tailJoint1: {x: 1, y: 0, z: 0}
   tailJoint2: {x: 2, y: 1, z: 0}
@@ -179,7 +180,7 @@ MonoBehaviour:
   tailSprite: {fileID: 1592848323455736, guid: eceaef5fd6f95cf40b1a1c6cf10567b0, type: 2}
   stingerSprite: {fileID: 1540840728686204, guid: 0bed692caf463a141b8cb7f15bd889ce,
     type: 2}
-  tailJabTime: 1
+  tailJabTime: 0.5
 --- !u!212 &212372211125314038
 SpriteRenderer:
   m_ObjectHideFlags: 1

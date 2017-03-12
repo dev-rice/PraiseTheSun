@@ -1427,16 +1427,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114637728072565958, guid: 6107d4ca890285041b92e4988894c9bc,
-        type: 2}
-      propertyPath: idleTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114637728072565958, guid: 6107d4ca890285041b92e4988894c9bc,
-        type: 2}
-      propertyPath: tailJabTime
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6107d4ca890285041b92e4988894c9bc, type: 2}
   m_IsPrefabParent: 0
