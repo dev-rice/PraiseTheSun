@@ -5500,6 +5500,11 @@ Prefab:
       propertyPath: camera_
       value: 
       objectReference: {fileID: 2093772958}
+    - target: {fileID: 114084678771786008, guid: db81c30dce3ebc64b8a9217db62d43de,
+        type: 2}
+      propertyPath: snap
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db81c30dce3ebc64b8a9217db62d43de, type: 2}
   m_IsPrefabParent: 0
