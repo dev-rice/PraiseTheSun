@@ -15,6 +15,8 @@ public class PlayerController : Movable {
 
     public GameObject healtPickupPrefab;
 
+    public LevelManager levelManager;
+
 	public enum PlayerDirection {
         Right,
         Left
@@ -40,6 +42,8 @@ public class PlayerController : Movable {
     private const string HEALTH_PICKUP_TAG = "HealthPickup";
 
     private int healthPickedUpSinceLastDeath = 0;
+
+    private GameObject lastHealthPickupDropped;
 
 	void Start () {
 		health = BASE_HEATLH;
@@ -88,6 +92,9 @@ public class PlayerController : Movable {
 	void die() {
 		banner.showMessage("YOU DIED");
 		
+		// This needs to be called before dropHealthPickup because it will delete all the health pickups
+		levelManager.playerDied();
+
 		rigidbody2d.velocity = new Vector2(0, 0);
 		if (healthPickedUpSinceLastDeath > 0) {
 			dropHealthPickup();			
@@ -104,10 +111,16 @@ public class PlayerController : Movable {
 	}
 
 	void dropHealthPickup() {
+		if (lastHealthPickupDropped != null) {
+			Destroy(lastHealthPickupDropped);
+		}
+
 		GameObject g = Instantiate(healtPickupPrefab);
 		g.transform.position = transform.position;
 		HealthPickup h = (HealthPickup)g.GetComponent<HealthPickup>();
 		h.amount = healthPickedUpSinceLastDeath;
+
+		lastHealthPickupDropped = g;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
