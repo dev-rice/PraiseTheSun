@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour {
 	void dropHealthPickup() {
 		GameObject g = Instantiate(healtPickupPrefab);
 		g.transform.position = transform.position;
+		// This ensures that the health pickups get deleted when the enemies get deleted
+		g.transform.SetParent(transform.parent);
+		
 		HealthPickup h = (HealthPickup)g.GetComponent<HealthPickup>();
 		h.amount = healthDropped;
 	}
