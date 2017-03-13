@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c037f272e4d8034c9dece573025d8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snap: 3
+  snap: 1
   state: 0
   direction: 1
   aggroDistance: 4

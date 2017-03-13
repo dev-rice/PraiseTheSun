@@ -92,10 +92,14 @@ public class PlayerController : Movable {
 	void die() {
 		banner.showMessage("YOU DIED");
 		
-		// This needs to be called before dropHealthPickup because it will delete all the health pickups
 		levelManager.playerDied();
 
 		rigidbody2d.velocity = new Vector2(0, 0);
+		
+
+		if (lastHealthPickupDropped != null) {
+			Destroy(lastHealthPickupDropped);
+		}
 		if (healthPickedUpSinceLastDeath > 0) {
 			dropHealthPickup();			
 		}
@@ -111,10 +115,6 @@ public class PlayerController : Movable {
 	}
 
 	void dropHealthPickup() {
-		if (lastHealthPickupDropped != null) {
-			Destroy(lastHealthPickupDropped);
-		}
-
 		GameObject g = Instantiate(healtPickupPrefab);
 		g.transform.position = transform.position;
 		HealthPickup h = (HealthPickup)g.GetComponent<HealthPickup>();
