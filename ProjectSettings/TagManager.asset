@@ -23,6 +23,7 @@ TagManager:
   - Ene
   - Enem
   - Enemy
+  - HealthPickup
   layers:
   - Default
   - TransparentFX
@@ -33,8 +34,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - Player
+  - Gorilla
   - 
   - 
   - 
