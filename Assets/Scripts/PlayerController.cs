@@ -90,7 +90,9 @@ public class PlayerController : Movable {
 	}
 
 	void die() {
-		banner.showMessage("YOU DIED");
+		if (banner != null) {
+			banner.showMessage("YOU DIED");			
+		}
 		
 		levelManager.playerDied();
 
@@ -130,7 +132,9 @@ public class PlayerController : Movable {
 
 			if (!new_bonfire.isLit()) {
 				new_bonfire.Light();
-				banner.showMessage("BONFIRE LIT");
+				if (banner != null) {
+					banner.showMessage("BONFIRE LIT");					
+				}
 			}
 
 			this.bonfire = new_bonfire;
