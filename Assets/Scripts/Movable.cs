@@ -22,7 +22,7 @@ public class Movable : MonoBehaviour {
     private const float onepixel = 0.0625f;
     private const float halfwidth = 0.25f;
     private const float halfspriteheight = 0.5f;
-    private const int groundLayerMask = 1 << 8;
+    private const int groundLayerMask = 1 << 8 | 1 << 11;
 
     // const values for right/left probes
     private const float horizontalprobemaxdistance = 1.0f;

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61021460958497044}
   - component: {fileID: 82408736581325034}
   - component: {fileID: 114204575250304962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemy_gorilla
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 61667075049568120}
   - component: {fileID: 50865997345836102}
   - component: {fileID: 114637728072565958}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: enemy_scorpion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
