@@ -32,6 +32,12 @@ public class PlayerController : Movable {
         Dead,
     }
 
+    // timers
+    private float blockTime = 0.4166f;
+    private float blockTimeCurrent;
+    private float attackTime = 0.4166f;
+    private float attackTimeCurrent;
+
     public PlayerState state;
     private PlayerState oldstate;
     public PlayerDirection direction;
@@ -41,6 +47,8 @@ public class PlayerController : Movable {
 
     [Header("Action Costs")]
     public int jumpStaminaCost;
+    public int blockStaminaCost;
+    public int attackStaminaCost;
 
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
@@ -101,10 +109,16 @@ public class PlayerController : Movable {
             state = PlayerState.Idle;
         }
 
-        if(Input.GetKeyDown(KeyCode.X)){
+        if(Input.GetKeyDown(KeyCode.X) && oldstate != PlayerState.Blocking){
             state = PlayerState.Blocking;
-        } else if(Input.GetKeyDown(KeyCode.Z)){
+            Debug.Log("Blocking!");
+            blockTimeCurrent = 0.0f;
+            health -= blockStaminaCost;
+        } else if(Input.GetKeyDown(KeyCode.Z) && oldstate != PlayerState.Attacking){
             state = PlayerState.Attacking;
+            Debug.Log("Attacking!");
+            attackTimeCurrent = 0.0f;
+            health -= attackStaminaCost;
         }
 
         // Death
@@ -120,24 +134,48 @@ public class PlayerController : Movable {
 	}
 
     void Animate(){
-        // Only if state changes
+        if(oldstate == PlayerState.Attacking){
+            attackTimeCurrent += Time.deltaTime;
+
+            if(attackTimeCurrent < attackTime){
+                state = PlayerState.Attacking;
+
+                if(attackTimeCurrent > 0.1f ){
+                    // create weapon for time
+                }
+            } else {
+                // destroy weapon
+                state = PlayerState.Idle;
+            }
+        }
+
+        if(oldstate == PlayerState.Blocking){
+            blockTimeCurrent += Time.deltaTime;
+
+            if(blockTimeCurrent < blockTime){
+                state = PlayerState.Blocking;
+            } else {
+                state = PlayerState.Idle;
+            }
+        }
+
+        // Do the rest only if the state's changed
         if(oldstate == state){
             return;
         }
 
         // If we're transitioning out of stuff that doesn't need a timer
-        if(oldstate != PlayerState.Attacking && oldstate != PlayerState.Attacking){
-            if(state == PlayerState.Idle){
-                animator.SetTrigger("idle");
-            } else if(state == PlayerState.Running){
-                animator.SetTrigger("run");
-            } else if(state == PlayerState.Jumping){
-                animator.SetTrigger("jump");
-            }
-        } else {
-
+        if(state == PlayerState.Idle){
+            animator.SetTrigger("idle");
+        } else if(state == PlayerState.Running){
+            animator.SetTrigger("run");
+        } else if(state == PlayerState.Jumping){
+            animator.SetTrigger("jump");
+        }else if(state == PlayerState.Attacking){
+            animator.SetTrigger("attack");
+        } else if(state == PlayerState.Blocking){
+            animator.SetTrigger("block");
         }
-
     }
 
 	void die() {
