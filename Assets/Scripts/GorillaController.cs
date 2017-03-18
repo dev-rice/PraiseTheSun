@@ -74,8 +74,8 @@ public class GorillaController : Movable {
             GetComponent<BoxCollider2D>().enabled = false;
 
             // don't let snapping happen
-            CacheTransformAndPixelSnap();
-            snap = PixelSnap.Never;
+            // CacheTransformAndPixelSnap();
+            // snap = PixelSnap.Never;
 
             return;
         }

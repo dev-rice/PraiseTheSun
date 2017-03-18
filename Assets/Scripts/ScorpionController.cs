@@ -84,6 +84,11 @@ public class ScorpionController : Movable {
                     direction = 0.0f;
                 }
 
+                // must be on same y level
+                if(Mathf.Abs(transform.position.y - player.transform.position.y) > 1.5f){
+                    direction = 0.0f;
+                }
+
                 transform.position += direction * Vector3.right * speed * Time.deltaTime;
 
                 idleCurrentTime += Time.deltaTime;

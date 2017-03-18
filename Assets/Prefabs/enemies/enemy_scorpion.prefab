@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786454349872984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: -3.42, z: 0}
+  m_LocalPosition: {x: 4.24, y: 5.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4065233423903642}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7748694f52601fb4fba5d93284a7761f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snap: 3
+  snap: 1
   state: 0
   speed: 3
   playerNearDistance: 3
@@ -180,7 +180,7 @@ MonoBehaviour:
   tailSprite: {fileID: 1592848323455736, guid: eceaef5fd6f95cf40b1a1c6cf10567b0, type: 2}
   stingerSprite: {fileID: 1540840728686204, guid: 0bed692caf463a141b8cb7f15bd889ce,
     type: 2}
-  tailJabTime: 0.5
+  tailJabTime: 0.7
 --- !u!212 &212372211125314038
 SpriteRenderer:
   m_ObjectHideFlags: 1
