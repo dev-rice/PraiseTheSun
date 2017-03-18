@@ -72,12 +72,13 @@ public class LionController : Movable {
             animator.SetTrigger("anim_sleep");
 
             // turn off physics
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<BoxCollider2D>().enabled = false;
 
             // don't let snapping happen
-            CacheTransformAndPixelSnap();
-            snap = PixelSnap.Never;
+            // CacheTransformAndPixelSnap();
+            // snap = PixelSnap.Never;
 
             return;
         }
@@ -123,7 +124,9 @@ public class LionController : Movable {
                 float newx = direction == LionDirection.Left ? transform.position.x - chargeSpeed * Time.deltaTime : transform.position.x + chargeSpeed * Time.deltaTime;
                 transform.position = new Vector3(newx, transform.position.y, 0.0f);
 
-                if((transform.position - player.transform.position).magnitude > alertDistance){
+                // hack shit
+                float colldistance = direction == LionDirection.Left ? LeftGroundDistance() : RightGroundDistance();
+                if((transform.position - player.transform.position).magnitude > alertDistance || colldistance < 0.7){
                     state = LionState.Alert;
                     Destroy(lionWeaponInstance);
                 }

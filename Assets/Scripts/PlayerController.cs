@@ -254,8 +254,10 @@ public class PlayerController : Movable {
 
         if(other.GetComponent<Collider2D>().tag == WEAPON_TAG && health > 0.0f){
             if(state == PlayerState.Blocking){
-                audioSource.clip = blockSound;
-                audioSource.Play();
+                if(!audioSource.isPlaying){
+                    audioSource.clip = blockSound;
+                    audioSource.Play();
+                }
             } else {
                 WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
                 health -= weapon.damage;
@@ -265,8 +267,10 @@ public class PlayerController : Movable {
                 }
 
                 animator.SetTrigger("hit");
-                audioSource.clip = hitSound;
-                audioSource.Play();
+                if(!audioSource.isPlaying){
+                    audioSource.clip = hitSound;
+                    audioSource.Play();
+                }
 
                 // Create blood
                 GameObject blood = Instantiate(bloodParticles);
@@ -282,8 +286,10 @@ public class PlayerController : Movable {
         	healthPickedUpSinceLastDeath += h.amount;
         	Destroy(h.gameObject);
 
-            audioSource.clip = pickupSound;
-            audioSource.Play();
+            if(!audioSource.isPlaying){
+                audioSource.clip = pickupSound;
+                audioSource.Play();
+            }
 
         	GameObject particles = Instantiate(healthPickupParticles);
             particles.transform.position = transform.position;
