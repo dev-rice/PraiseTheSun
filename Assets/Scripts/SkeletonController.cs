@@ -130,7 +130,9 @@ public class SkeletonController : Movable {
                 }
             }
             if(state == SkeletonState.Patrolling){
-                animator.SetTrigger("anim_patrol");
+                if (moveSpeed != 0.0f) {
+                    animator.SetTrigger("anim_patrol");
+                }
 
                 if(direction == SkeletonDirection.Right && transform.position.x < rightBound && RightGroundDistance() > horizontaldistance){
                     // Move right
