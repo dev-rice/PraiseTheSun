@@ -36,6 +36,7 @@ public class PlayerController : Movable {
     private float blockTime = 0.4166f;
     private float blockTimeCurrent;
     private float attackTime = 0.4166f;
+    private float attackWeaponTime = 0.166f;
     private float attackTimeCurrent;
 
     public PlayerState state;
@@ -65,6 +66,9 @@ public class PlayerController : Movable {
 
     private GameObject lastHealthPickupDropped;
     private Animator animator;
+
+    public GameObject playerWeaponInstance;
+    private GameObject playerWeapon;
 
 	void Start () {
 		health = BASE_HEATLH;
@@ -111,12 +115,10 @@ public class PlayerController : Movable {
 
         if(Input.GetKeyDown(KeyCode.X) && oldstate != PlayerState.Blocking){
             state = PlayerState.Blocking;
-            Debug.Log("Blocking!");
             blockTimeCurrent = 0.0f;
             health -= blockStaminaCost;
         } else if(Input.GetKeyDown(KeyCode.Z) && oldstate != PlayerState.Attacking){
             state = PlayerState.Attacking;
-            Debug.Log("Attacking!");
             attackTimeCurrent = 0.0f;
             health -= attackStaminaCost;
         }
@@ -140,11 +142,21 @@ public class PlayerController : Movable {
             if(attackTimeCurrent < attackTime){
                 state = PlayerState.Attacking;
 
-                if(attackTimeCurrent > 0.1f ){
-                    // create weapon for time
+                if(attackTimeCurrent > attackWeaponTime && !playerWeapon){
+                    playerWeapon = Instantiate(playerWeaponInstance);
+                    playerWeapon.transform.position = transform.position;
+
+                    // fixes bug where flipping direction while playing attack animation
+                    if (direction == PlayerDirection.Left) {
+            			playerWeapon.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            		} else if (direction == PlayerDirection.Right) {
+            			playerWeapon.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            		}
+
+                    playerWeapon.transform.parent = transform;
                 }
             } else {
-                // destroy weapon
+                Destroy(playerWeapon);
                 state = PlayerState.Idle;
             }
         }

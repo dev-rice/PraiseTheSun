@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908404230121680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 1.36, z: 0}
+  m_LocalPosition: {x: -3.52, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,6 +125,8 @@ MonoBehaviour:
   jumpStaminaCost: 5
   blockStaminaCost: 0
   attackStaminaCost: 0
+  playerWeaponInstance: {fileID: 1287920936521332, guid: 50c1de19b76c2df44928292dc891b064,
+    type: 2}
 --- !u!212 &212714616725296102
 SpriteRenderer:
   m_ObjectHideFlags: 1
