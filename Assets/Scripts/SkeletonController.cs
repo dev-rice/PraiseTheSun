@@ -69,7 +69,7 @@ public class SkeletonController : Movable {
         if(!player){
             Debug.LogError("Couldn't find player gameobject.");
         }
-        
+
         enemy = GetComponent<Enemy>();
 	}
 

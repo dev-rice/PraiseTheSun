@@ -7,7 +7,7 @@ public class ParticleImplodeController : MonoBehaviour {
 	public int maxParticles;
 
     public GameObject particlesInstance;
-    public Transform target;
+    public GameObject target;
 
     private float minRadius = 1.0f;
     private float maxRadius = 4.0f;
@@ -27,9 +27,9 @@ public class ParticleImplodeController : MonoBehaviour {
 
     void NewParticle(Vector3 position, float seconds) {
         GameObject particle = Instantiate(particlesInstance);
-        
+
         particle.transform.position = position;
-        
+
         particle.GetComponent<Rigidbody2D>().gravityScale = 0;
 
         particle.GetComponent<EffectsController>().lifetimeSeconds = seconds;

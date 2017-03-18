@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleTrackPlayer : MonoBehaviour {
 
-	public Transform target;
+	public GameObject target;
 
 	private float distanceToKill = 0.2f;
 	private float baseTrackSpeed = 6.0f;
@@ -15,7 +15,7 @@ public class ParticleTrackPlayer : MonoBehaviour {
 			return;
 		}
 
-		Vector2 vectorToPlayer = (Vector2)transform.position - (Vector2)target.position;
+		Vector2 vectorToPlayer = (Vector2)transform.position - (Vector2)target.transform.position;
 		if (vectorToPlayer.magnitude <= distanceToKill) {
 			Destroy(gameObject);
 		}
@@ -24,6 +24,6 @@ public class ParticleTrackPlayer : MonoBehaviour {
 		trackSpeed = Mathf.Max(baseTrackSpeed, trackSpeed);
 		trackSpeed = trackSpeed * Random.Range(0.5f, 1.5f);
 
-		transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * trackSpeed);
+		transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime * trackSpeed);
 	}
 }

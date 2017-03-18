@@ -22,7 +22,8 @@ public class Movable : MonoBehaviour {
     private const float onepixel = 0.0625f;
     private const float halfwidth = 0.25f;
     private const float halfspriteheight = 0.5f;
-    private const int groundLayerMask = 1 << 8 | 1 << 11;
+    private const int groundAndEnemyLayerMask = 1 << 8 | 1 << 11;
+    private const int groundLayerMask = 1 << 8;
 
     // const values for right/left probes
     private const float horizontalprobemaxdistance = 1.0f;
@@ -40,8 +41,8 @@ public class Movable : MonoBehaviour {
         Debug.DrawRay(rightprobe, -Vector3.up * onepixel);
         Debug.DrawRay(leftprobe, -Vector3.up * onepixel);
 
-        return Physics2D.Raycast(rightprobe, -Vector2.up, onepixel, groundLayerMask) ||
-               Physics2D.Raycast(leftprobe, -Vector2.up, onepixel, groundLayerMask);
+        return Physics2D.Raycast(rightprobe, -Vector2.up, onepixel, groundAndEnemyLayerMask) ||
+               Physics2D.Raycast(leftprobe, -Vector2.up, onepixel, groundAndEnemyLayerMask);
     }
 
     protected float LeftGroundDistance(){

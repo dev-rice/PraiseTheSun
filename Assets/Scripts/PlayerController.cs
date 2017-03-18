@@ -252,7 +252,7 @@ public class PlayerController : Movable {
 
         	GameObject particles = Instantiate(healthPickupParticles);
             particles.transform.position = transform.position;
-            particles.GetComponent<ParticleImplodeController>().target = transform;
+            particles.GetComponent<ParticleImplodeController>().target = gameObject;
 
         }
 	}

@@ -5,17 +5,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
 	public GameObject allEnemiesPrefab;
-
-	private GameObject enemies;
+	public GameObject enemies;
 
 	// Use this for initialization
 	void Start () {
-		enemies = Instantiate(allEnemiesPrefab);
+		// enemies = Instantiate(allEnemiesPrefab);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	public void playerDied() {

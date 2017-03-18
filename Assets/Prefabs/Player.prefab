@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908404230121680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.52, y: 0.83, z: 0}
+  m_LocalPosition: {x: -6.95, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ Animator:
   m_GameObject: {fileID: 1908404230121680}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 320cbf76f3a8298498e8a0145c4e3d45, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -116,12 +116,15 @@ MonoBehaviour:
     type: 2}
   levelManager: {fileID: 114230236777151804, guid: 0a07af127849c4194bd9aba088f32317,
     type: 2}
+  state: 0
   direction: 0
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
   healthPickupParticles: {fileID: 1512175858202064, guid: 32ea22af2350f42b38a78e14926796bd,
     type: 2}
   jumpStaminaCost: 5
+  blockStaminaCost: 0
+  attackStaminaCost: 0
 --- !u!212 &212714616725296102
 SpriteRenderer:
   m_ObjectHideFlags: 1
