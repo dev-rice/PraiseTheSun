@@ -51,6 +51,14 @@ public class PlayerController : Movable {
     public int blockStaminaCost;
     public int attackStaminaCost;
 
+    [Header("Sounds")]
+    public AudioClip hitSound;
+    public AudioClip jumpSound;
+    public AudioClip blockSound;
+    public AudioClip pickupSound;
+
+    private AudioSource audioSource;
+
 	private float acceleration_time_airborne = 0.5f;
 	private float acceleration_time_grounded = 0.1f;
 
@@ -76,6 +84,7 @@ public class PlayerController : Movable {
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		direction = PlayerDirection.Right;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         if(bonfire){
 		    bonfire.Light();
@@ -89,6 +98,9 @@ public class PlayerController : Movable {
 			if (Input.GetKeyDown(KeyCode.Space)) {
                 health -= jumpStaminaCost;
 				velocity.y = jumpVelocity;
+
+                audioSource.clip = jumpSound;
+                audioSource.Play();
 			}
 		}
 		Vector2 input = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -100,7 +112,6 @@ public class PlayerController : Movable {
 
 		direction = getDirectionFromInput(input);
 		flipBasedOnDirection();
-
 
         // Hacky state handling because we didn't start with this
         oldstate = state;
@@ -242,16 +253,25 @@ public class PlayerController : Movable {
 		}
 
         if(other.GetComponent<Collider2D>().tag == WEAPON_TAG && health > 0.0f){
-            WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
-            health -= weapon.damage;
+            if(state == PlayerState.Blocking){
+                audioSource.clip = blockSound;
+                audioSource.Play();
+            } else {
+                WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
+                health -= weapon.damage;
 
-            if(weapon.destroyOnImpact){
-                Destroy(other.gameObject);
+                if(weapon.destroyOnImpact){
+                    Destroy(other.gameObject);
+                }
+
+                animator.SetTrigger("hit");
+                audioSource.clip = hitSound;
+                audioSource.Play();
+
+                // Create blood
+                GameObject blood = Instantiate(bloodParticles);
+                blood.transform.position = transform.position;
             }
-
-            // Create blood
-            GameObject blood = Instantiate(bloodParticles);
-            blood.transform.position = transform.position;
         }
 
         if (other.tag == HEALTH_PICKUP_TAG) {
@@ -261,6 +281,9 @@ public class PlayerController : Movable {
         	health += h.amount;
         	healthPickedUpSinceLastDeath += h.amount;
         	Destroy(h.gameObject);
+
+            audioSource.clip = pickupSound;
+            audioSource.Play();
 
         	GameObject particles = Instantiate(healthPickupParticles);
             particles.transform.position = transform.position;
