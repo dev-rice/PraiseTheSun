@@ -70,11 +70,11 @@ TagManager:
   - name: Player
     uniqueID: 3647777505
     locked: 0
-  - name: Effects
-    uniqueID: 2397342211
-    locked: 0
   - name: Environment
     uniqueID: 2714151261
+    locked: 0
+  - name: Effects
+    uniqueID: 2397342211
     locked: 0
   - name: UI
     uniqueID: 595760461
