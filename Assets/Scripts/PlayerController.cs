@@ -21,6 +21,19 @@ public class PlayerController : Movable {
         Right,
         Left
     }
+
+    public enum PlayerState {
+        Idle,
+        Running,
+        Jumping,
+        Attacking,
+        Blocking,
+        Hit,
+        Dead,
+    }
+
+    public PlayerState state;
+    private PlayerState oldstate;
     public PlayerDirection direction;
 
     public GameObject bloodParticles;
@@ -36,7 +49,6 @@ public class PlayerController : Movable {
 
     private float velocity_x_smoothing;
 
-    private bool isDead;
     private const string BONFIRE_TAG = "Bonfire";
     private const string WEAPON_TAG = "Weapon";
     private const string HEALTH_PICKUP_TAG = "HealthPickup";
@@ -44,13 +56,14 @@ public class PlayerController : Movable {
     private int healthPickedUpSinceLastDeath = 0;
 
     private GameObject lastHealthPickupDropped;
+    private Animator animator;
 
 	void Start () {
 		health = BASE_HEATLH;
 
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		direction = PlayerDirection.Right;
-		isDead = false;
+        animator = GetComponent<Animator>();
 
         if(bonfire){
 		    bonfire.Light();
@@ -76,36 +89,74 @@ public class PlayerController : Movable {
 		direction = getDirectionFromInput(input);
 		flipBasedOnDirection();
 
-		if (Input.GetKeyDown(KeyCode.K)) {
-			isDead = true;
-		}
-		if (health <= 0) {
-			isDead = true;
+
+        // Hacky state handling because we didn't start with this
+        oldstate = state;
+
+        if(!IsGrounded()){
+            state = PlayerState.Jumping;
+        } else if(Mathf.Abs(velocity.x) > 0.1f){
+            state = PlayerState.Running;
+        } else {
+            state = PlayerState.Idle;
+        }
+
+        if(Input.GetKeyDown(KeyCode.X)){
+            state = PlayerState.Blocking;
+        } else if(Input.GetKeyDown(KeyCode.Z)){
+            state = PlayerState.Attacking;
+        }
+
+        // Death
+		if (health <= 0 || Input.GetKeyDown(KeyCode.K)) {
+			state = PlayerState.Dead;
 		}
 
-
-		if (isDead) {
+		if (state == PlayerState.Dead) {
 			die();
 		}
+
+        Animate();
 	}
+
+    void Animate(){
+        // Only if state changes
+        if(oldstate == state){
+            return;
+        }
+
+        // If we're transitioning out of stuff that doesn't need a timer
+        if(oldstate != PlayerState.Attacking && oldstate != PlayerState.Attacking){
+            if(state == PlayerState.Idle){
+                animator.SetTrigger("idle");
+            } else if(state == PlayerState.Running){
+                animator.SetTrigger("run");
+            } else if(state == PlayerState.Jumping){
+                animator.SetTrigger("jump");
+            }
+        } else {
+
+        }
+
+    }
 
 	void die() {
 		if (banner != null) {
-			banner.showMessage("YOU DIED");			
+			banner.showMessage("YOU DIED");
 		}
-		
+
 		levelManager.playerDied();
 
 		rigidbody2d.velocity = new Vector2(0, 0);
-		
+
 
 		if (lastHealthPickupDropped != null) {
 			Destroy(lastHealthPickupDropped);
 		}
 		if (healthPickedUpSinceLastDeath > 0) {
-			dropHealthPickup();			
+			dropHealthPickup();
 		}
-        
+
         if(bonfire){
             transform.position = bonfire.transform.position;
             direction = PlayerDirection.Right;
@@ -113,7 +164,7 @@ public class PlayerController : Movable {
 
         health = BASE_HEATLH;
         healthPickedUpSinceLastDeath = 0;
-		isDead = false;
+		state = PlayerState.Idle;
 	}
 
 	void dropHealthPickup() {
@@ -133,7 +184,7 @@ public class PlayerController : Movable {
 			if (!new_bonfire.isLit()) {
 				new_bonfire.Light();
 				if (banner != null) {
-					banner.showMessage("BONFIRE LIT");					
+					banner.showMessage("BONFIRE LIT");
 				}
 			}
 
