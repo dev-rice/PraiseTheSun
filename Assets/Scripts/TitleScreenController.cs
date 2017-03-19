@@ -11,16 +11,26 @@ public class TitleScreenController : MonoBehaviour {
 
     public enum TitleState {
         BlackFade,
-        Title
+        Title,
+        Nope
     }
 
     public TitleState state;
 
     private SpriteRenderer renderer_;
     public Sprite titleSprite;
+    private GameObject player;
+    public GameObject tptransform;
 
 	void Start () {
         renderer_ = title.GetComponent<SpriteRenderer>();
+
+        player = GameObject.FindWithTag("Player");
+        if(!player){
+            Debug.LogError("Couldn't find player gameobject.");
+        }
+        player.GetComponent<PlayerController>().enabled = false;
+        GetComponent<JukeboxController>().enabled = false;
 	}
 
 	void Update () {
@@ -34,11 +44,21 @@ public class TitleScreenController : MonoBehaviour {
                 state = TitleState.Title;
             }
         } else if(state == TitleState.Title){
-            renderer_.sprite = titleSprite;
+            if(renderer_.sprite != titleSprite){
+                renderer_.sprite = titleSprite;
+            }
 
             if(Input.anyKey){
-                Destroy(title);
-                this.enabled = false;
+                // teleport player and camera to first bonfire
+                // transform.position = tptransform.transform.position;
+                player.transform.position = tptransform.transform.position;
+
+                // enable player and jukebox
+                player.GetComponent<PlayerController>().enabled = true;
+                GetComponent<JukeboxController>().enabled = true;
+
+                renderer_.enabled = false;
+                state = TitleState.Nope;
             }
         }
 	}
