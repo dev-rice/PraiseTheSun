@@ -54,7 +54,7 @@ public class ScorpionController : Movable {
     // enemy reference (for dying/respawning)
     private Enemy enemy;
 
-    public MessageBanner banner;
+    private MessageBanner banner;
     private float playerWonTime;
     private bool playerWon = false;
 
@@ -62,6 +62,7 @@ public class ScorpionController : Movable {
         currentTailJabTime = 0.0f;
 
         stingerSprite = Instantiate(stingerSprite);
+        stingerSprite.GetComponent<WeaponDamage>().creator = gameObject;
 
         tailSprites = new GameObject[tailSegments - 2];
 
@@ -75,6 +76,13 @@ public class ScorpionController : Movable {
         }
 
         enemy = GetComponent<Enemy>();
+
+        GameObject bannerobj = GameObject.FindWithTag("MessageBanner");
+        if(!bannerobj){
+            Debug.LogError("Couldn't find banner gameobject.");
+        }
+
+        banner = (MessageBanner)bannerobj.GetComponent<MessageBanner>();
 
 	}
 
@@ -136,21 +144,9 @@ public class ScorpionController : Movable {
             UpdateTail();
         }
 
-        if(health <= 0){
+        if(health <= 0 && state != ScorpionState.Dead){
             // set state and animation state
             state = ScorpionState.Dead;
-
-            // Create blood
-            GameObject blood = Instantiate(bloodParticles);
-            blood.transform.position = transform.position;
-
-            // Create blood
-            GameObject blood2 = Instantiate(bloodParticles);
-            blood2.transform.position = transform.position + new Vector3(1, 0, 0);
-
-            // Create blood
-            GameObject blood3 = Instantiate(bloodParticles);
-            blood3.transform.position = transform.position + new Vector3(-1, 0, 0);
 
             enemy.die();
 
@@ -162,6 +158,20 @@ public class ScorpionController : Movable {
 
         if(playerWon && Input.anyKey && playerWonTime - Time.time > 1.0f){
             Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (health <= 0) {
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
+
+            // Create blood
+            GameObject blood2 = Instantiate(bloodParticles);
+            blood2.transform.position = transform.position + new Vector3(1, 0, 0);
+
+            // Create blood
+            GameObject blood3 = Instantiate(bloodParticles);
+            blood3.transform.position = transform.position + new Vector3(-1, 0, 0);
         }
 	}
 
@@ -207,7 +217,7 @@ public class ScorpionController : Movable {
             // remove health
             WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
 
-            if(!weapon.hurtCreator || weapon.creator == gameObject){
+            if(weapon.creator != gameObject){
                 health -= weapon.damage;
             } else {
                 return;
