@@ -206,10 +206,19 @@ public class PlayerController : Movable {
 
 	void die() {
 		if (banner != null) {
+			banner.fill(true);
 			banner.showMessage("YOU DIED");
 		}
 
-		levelManager.playerDied();
+		StartCoroutine(dieAfterTime(1));
+
+	}
+
+	IEnumerator dieAfterTime(float time) {
+    	yield return new WaitForSeconds(time);
+ 
+     	// Code to execute after the delay
+	 	levelManager.playerDied();
 
 		rigidbody2d.velocity = new Vector2(0, 0);
 
@@ -221,13 +230,13 @@ public class PlayerController : Movable {
 			dropHealthPickup();
 		}
 
-        if(bonfire){
-            transform.position = bonfire.transform.position;
-            direction = PlayerDirection.Right;
-        }
+	    if(bonfire){
+	        transform.position = bonfire.transform.position;
+	        direction = PlayerDirection.Right;
+	    }
 
-        health = BASE_HEATLH;
-        healthPickedUpSinceLastDeath = 0;
+	    health = BASE_HEATLH;
+	    healthPickedUpSinceLastDeath = 0;
 		state = PlayerState.Idle;
 	}
 
@@ -248,6 +257,7 @@ public class PlayerController : Movable {
 			if (!new_bonfire.isLit()) {
 				new_bonfire.Light();
 				if (banner != null) {
+					banner.fill(false);
 					banner.showMessage("BONFIRE LIT");
 				}
 			}

@@ -150,6 +150,7 @@ public class ScorpionController : Movable {
 
             enemy.die();
 
+            banner.fill(true);
             banner.showMessage("YOU WIN!");
             playerWon = true;
             playerWonTime = Time.time;
