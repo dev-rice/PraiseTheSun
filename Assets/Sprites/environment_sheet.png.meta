@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7379851951a4a014185495808f8acbf2
-timeCreated: 1489040998
+timeCreated: 1489942520
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: environment_sheet_5
     21300012: environment_sheet_6
     21300014: environment_sheet_7
+    21300016: environment_sheet_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -173,6 +174,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: environment_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 48
         y: 16
         width: 16
         height: 16
