@@ -48,7 +48,7 @@ public class ScorpionController : Movable {
     public float tailJabTime;
     private float currentTailJabTime;
 
-    
+
     public GameObject bloodParticles;
 
     // enemy reference (for dying/respawning)
