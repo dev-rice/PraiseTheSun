@@ -56,6 +56,7 @@ public class PlayerController : Movable {
     public AudioClip jumpSound;
     public AudioClip blockSound;
     public AudioClip pickupSound;
+    public AudioClip attackSound;
 
     private AudioSource audioSource;
 
@@ -129,6 +130,8 @@ public class PlayerController : Movable {
             blockTimeCurrent = 0.0f;
             health -= blockStaminaCost;
         } else if(Input.GetKeyDown(KeyCode.Z) && oldstate != PlayerState.Attacking){
+        	audioSource.clip = attackSound;
+        	audioSource.Play();
             state = PlayerState.Attacking;
             attackTimeCurrent = 0.0f;
             health -= attackStaminaCost;

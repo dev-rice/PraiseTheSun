@@ -132,6 +132,8 @@ public class SkeletonController : Movable {
             if(state == SkeletonState.Patrolling){
                 if (moveSpeed != 0.0f) {
                     animator.SetTrigger("anim_patrol");
+                } else {
+                    animator.SetTrigger("anim_idle");
                 }
 
                 if(direction == SkeletonDirection.Right && transform.position.x < rightBound && RightGroundDistance() > horizontaldistance){

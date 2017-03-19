@@ -210,6 +210,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: a3939dd3a08b743438d092eaf9e1d74f, type: 3}
   blockSound: {fileID: 8300000, guid: 22c036dfa84951b448208c4549f6ca52, type: 3}
   pickupSound: {fileID: 8300000, guid: f007c5ee6a0703d42bc86a7e7d3520ec, type: 3}
+  attackSound: {fileID: 8300000, guid: bb27333475edc9247afd107ddc5f0a13, type: 3}
   playerWeaponInstance: {fileID: 1287920936521332, guid: 50c1de19b76c2df44928292dc891b064,
     type: 2}
 --- !u!212 &212714616725296102
