@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour {
 	public enum CameraMode {
 		TrackOnFocusPoint,
 		ConstrainTargetToBounds
-	}	
+	}
 
 	[Header("Tracking Settings")]
 	public Transform target;
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour {
 	public Vector2 topRightBound;
 
 	private Camera camera_;
-	
+
 	private float bottomBound;
 	private float topBound;
 
@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
 		camera_ = GetComponent<Camera>();
 
 		Vector2 bottomLeftBoundPx = screenRatioToPixels(bottomLeftBound);
@@ -40,8 +41,8 @@ public class CameraController : MonoBehaviour {
 
 		bottomBound = bottomLeftBoundPx.y;
 		leftBound = bottomLeftBoundPx.x;
-		
-		topBound = topRightBoundPx.y;		
+
+		topBound = topRightBoundPx.y;
 		rightBound = topRightBoundPx.x;
 
 	}
