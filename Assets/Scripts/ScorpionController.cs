@@ -60,6 +60,7 @@ public class ScorpionController : Movable {
 
 	void Start(){
         currentTailJabTime = 0.0f;
+        idleTime = 3.5f;
 
         stingerSprite = Instantiate(stingerSprite);
         stingerSprite.GetComponent<WeaponDamage>().creator = gameObject;

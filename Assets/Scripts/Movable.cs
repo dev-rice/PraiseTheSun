@@ -98,18 +98,18 @@ public class Movable : MonoBehaviour {
         int yint = (int)y_;
 
         // get fractional part of position
-        float xfrac = x_ - (float)xint;
-        float yfrac = y_ - (float)yint;
+        double xfrac = x_ - (double)xint;
+        double yfrac = y_ - (double)yint;
 
         // get pixel position, rounded
         int xpx = (int)((xfrac * 16.0f) - 0.5f);
         int ypx = (int)((yfrac * 16.0f) - 0.5f);
 
-        // turn back into float
-        float xfinal = (float)xint + ((float)xpx / 16.0f);
-        float yfinal = (float)yint + ((float)ypx / 16.0f);
+        // turn back into double
+        double xfinal = (double)xint + ((double)xpx / 16.0f);
+        double yfinal = (double)yint + ((double)ypx / 16.0f);
 
-        transform.position = new Vector3(xfinal, yfinal, 0.0f);
+        transform.position = new Vector3((float)xfinal, (float)yfinal, 0.0f);
     }
 
     void OnRenderObject() {
