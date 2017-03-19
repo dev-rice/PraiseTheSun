@@ -19,6 +19,20 @@ public class LevelManager : MonoBehaviour {
 
 	public void playerDied() {
 		Destroy(enemies);
+
+        // iterate through all things with enemy tag, weapon tag
+        GameObject[] enems = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enems) {
+            Destroy(enemy);
+        }
+
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+
+        foreach (GameObject weapon in weapons) {
+            Destroy(weapon);
+        }
+
 		enemies = Instantiate(allEnemiesPrefab);
 	}
 }

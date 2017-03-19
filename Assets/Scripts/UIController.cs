@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour {
 
     public PlayerController player;
     public GameObject leftBar;
+    public GameObject centerBar;
     public GameObject rightBar;
 
 	void Update () {
@@ -17,7 +18,7 @@ public class UIController : MonoBehaviour {
 
         float halfwidth = scalex * originalWidth * 0.5f;
 
-        transform.localScale = new Vector3(scalex, 1.0f, 1.0f);
+        centerBar.transform.localScale = new Vector3(scalex, 1.0f, 1.0f);
         leftBar.transform.position = new Vector3(transform.position.x - halfwidth, transform.position.y, 0.0f);
         rightBar.transform.position = new Vector3(transform.position.x + halfwidth, transform.position.y, 0.0f);
 	}

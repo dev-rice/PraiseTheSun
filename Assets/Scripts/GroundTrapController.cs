@@ -41,6 +41,7 @@ public class GroundTrapController : Movable {
         if(triggered){
             // Override trapped character position
             trappedObject.transform.position = transform.position + new Vector3(0.5f, 0.5f, 0.0f);
+            trappedObject.GetComponent<Rigidbody2D>().position = transform.position + new Vector3(0.5f, 0.5f, 0.0f);
         }
     }
 }
