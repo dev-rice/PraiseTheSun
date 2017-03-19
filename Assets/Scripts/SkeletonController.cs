@@ -57,6 +57,7 @@ public class SkeletonController : Movable {
     private Enemy enemy;
 
 	void Start () {
+        health = 1500; // why god why
         // Setup patrol bounds
         leftBound = transform.position.x - patrolSize;
         rightBound = transform.position.x + patrolSize;

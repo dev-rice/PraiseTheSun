@@ -57,6 +57,7 @@ public class GorillaController : Movable {
     private Enemy enemy;
 
 	void Start () {
+        health = 1000; // fuck me
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
 
