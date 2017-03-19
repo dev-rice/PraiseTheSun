@@ -79,6 +79,8 @@ public class PlayerController : Movable {
     public GameObject playerWeaponInstance;
     private GameObject playerWeapon;
 
+    private bool dying = false;
+
 	void Start () {
 		health = BASE_HEATLH;
 
@@ -205,16 +207,17 @@ public class PlayerController : Movable {
     }
 
 	void die() {
-		if (banner != null) {
-			banner.fill(true);
-			banner.showMessage("YOU DIED");
+		if (!dying) {
+			if (banner) {
+				banner.fill(true);
+				banner.showMessage("YOU DIED");
+			}
+			StartCoroutine(dieAfterTime(1));			
 		}
-
-		StartCoroutine(dieAfterTime(1));
-
 	}
 
 	IEnumerator dieAfterTime(float time) {
+    	dying = true;
     	yield return new WaitForSeconds(time);
  
      	// Code to execute after the delay
@@ -224,9 +227,13 @@ public class PlayerController : Movable {
 
 
 		if (lastHealthPickupDropped != null) {
+			Debug.Log("Destroying your last health pickup");
 			Destroy(lastHealthPickupDropped);
 		}
+
+		Debug.Log("Picked up " + healthPickedUpSinceLastDeath + " since last death");
 		if (healthPickedUpSinceLastDeath > 0) {
+			Debug.Log("Dropping health pickup " + healthPickedUpSinceLastDeath);
 			dropHealthPickup();
 		}
 
@@ -238,6 +245,7 @@ public class PlayerController : Movable {
 	    health = BASE_HEATLH;
 	    healthPickedUpSinceLastDeath = 0;
 		state = PlayerState.Idle;
+		dying = false;
 	}
 
 	void dropHealthPickup() {
