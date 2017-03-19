@@ -48,6 +48,16 @@ public class ScorpionController : Movable {
     public float tailJabTime;
     private float currentTailJabTime;
 
+    
+    public GameObject bloodParticles;
+
+    // enemy reference (for dying/respawning)
+    private Enemy enemy;
+
+    public MessageBanner banner;
+    private float playerWonTime;
+    private bool playerWon = false;
+
 	void Start(){
         currentTailJabTime = 0.0f;
 
@@ -63,6 +73,9 @@ public class ScorpionController : Movable {
         if(!player){
             Debug.LogError("Couldn't find player gameobject.");
         }
+
+        enemy = GetComponent<Enemy>();
+
 	}
 
 	void Update(){
@@ -122,6 +135,34 @@ public class ScorpionController : Movable {
             // Update this last
             UpdateTail();
         }
+
+        if(health <= 0){
+            // set state and animation state
+            state = ScorpionState.Dead;
+
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
+
+            // Create blood
+            GameObject blood2 = Instantiate(bloodParticles);
+            blood2.transform.position = transform.position + new Vector3(1, 0, 0);
+
+            // Create blood
+            GameObject blood3 = Instantiate(bloodParticles);
+            blood3.transform.position = transform.position + new Vector3(-1, 0, 0);
+
+            enemy.die();
+
+            banner.showMessage("YOU WIN!");
+            playerWon = true;
+            playerWonTime = Time.time;
+
+        }
+
+        if(playerWon && Input.anyKey && playerWonTime - Time.time > 1.0f){
+            Application.LoadLevel(Application.loadedLevel);
+        }
 	}
 
     void UpdateTail(){
@@ -159,5 +200,30 @@ public class ScorpionController : Movable {
         }
 
         stingerSprite.transform.position = finalJoint3;
+    }
+
+     void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Weapon" && health > 0.0f){
+            // remove health
+            WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
+
+            if(!weapon.hurtCreator || weapon.creator == gameObject){
+                health -= weapon.damage;
+            } else {
+                return;
+            }
+
+            if(weapon.destroyOnImpact){
+                Destroy(other.gameObject);
+            }
+
+            // // play hit animation and sound
+            // audioSource.clip = hitSound;
+            // audioSource.Play();
+
+            // Create blood
+            GameObject blood = Instantiate(bloodParticles);
+            blood.transform.position = transform.position;
+        }
     }
 }

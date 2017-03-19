@@ -53,6 +53,9 @@ public class GorillaController : Movable {
     // gameobject references
     private GameObject player;
 
+    // enemy reference (for dying/respawning)
+    private Enemy enemy;
+
 	void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
@@ -61,6 +64,8 @@ public class GorillaController : Movable {
         if(!player){
             Debug.LogError("Couldn't find player gameobject.");
         }
+
+        enemy = GetComponent<Enemy>();
 	}
 
 	void Update () {
@@ -137,6 +142,7 @@ public class GorillaController : Movable {
             // set state and animation state
             state = GorillaState.Dead;
             spriteRenderer.sprite = deathSprite;
+            enemy.die();
         }
 	}
 
