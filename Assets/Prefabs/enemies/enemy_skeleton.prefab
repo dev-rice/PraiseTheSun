@@ -199,7 +199,7 @@ MonoBehaviour:
   axe: {fileID: 1133564758149242, guid: 086ef4c1719ef9d4e9e9584c280a2622, type: 2}
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
-  health: 500
+  health: 1500
   hitSound: {fileID: 8300000, guid: 009b4a37d34e3434a98c349e5bc38807, type: 3}
   throwSound: {fileID: 8300000, guid: 1d974af3d670fdc41b4c67ae68623c6e, type: 3}
 --- !u!114 &114897941504552112

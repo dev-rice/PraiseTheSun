@@ -237,7 +237,7 @@ MonoBehaviour:
   jumpDelay: 0.25
   bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
     type: 2}
-  health: 500
+  health: 1000
   idleSprite: {fileID: 21300000, guid: f0b0ee23789c9544e8fe992adbd45514, type: 3}
   crouchingSprite: {fileID: 21300002, guid: f0b0ee23789c9544e8fe992adbd45514, type: 3}
   jumpingSprite: {fileID: 21300004, guid: f0b0ee23789c9544e8fe992adbd45514, type: 3}
