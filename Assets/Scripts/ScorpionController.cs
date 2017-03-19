@@ -150,13 +150,14 @@ public class ScorpionController : Movable {
 
             enemy.die();
 
+            banner.fill(false);
             banner.showMessage("YOU WIN!");
             playerWon = true;
             playerWonTime = Time.time;
 
         }
 
-        if(playerWon && Input.anyKey && playerWonTime - Time.time > 1.0f){
+        if(playerWon && Input.anyKey && (Time.time - playerWonTime > 1.0f)){
             Application.LoadLevel(Application.loadedLevel);
         }
 

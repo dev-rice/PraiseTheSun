@@ -168,7 +168,7 @@ public class SkeletonController : Movable {
             // remove health
             WeaponDamage weapon = other.gameObject.GetComponent<WeaponDamage>();
 
-            if(!weapon.hurtCreator || weapon.creator == gameObject){
+            if(!(weapon.hurtCreator || weapon.creator == gameObject)){
                 health -= weapon.damage;
             } else {
                 return;

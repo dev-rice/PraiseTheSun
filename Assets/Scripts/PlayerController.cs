@@ -79,6 +79,8 @@ public class PlayerController : Movable {
     public GameObject playerWeaponInstance;
     private GameObject playerWeapon;
 
+    private bool dying = false;
+
 	void Start () {
 		health = BASE_HEATLH;
 
@@ -205,30 +207,45 @@ public class PlayerController : Movable {
     }
 
 	void die() {
-		if (banner != null) {
-			banner.showMessage("YOU DIED");
+		if (!dying) {
+			if (banner) {
+				banner.fill(true);
+				banner.showMessage("YOU DIED");
+			}
+			StartCoroutine(dieAfterTime(1));			
 		}
+	}
 
-		levelManager.playerDied();
+	IEnumerator dieAfterTime(float time) {
+    	dying = true;
+    	yield return new WaitForSeconds(time);
+ 
+     	// Code to execute after the delay
+	 	levelManager.playerDied();
 
 		rigidbody2d.velocity = new Vector2(0, 0);
 
 
 		if (lastHealthPickupDropped != null) {
+			Debug.Log("Destroying your last health pickup");
 			Destroy(lastHealthPickupDropped);
 		}
+
+		Debug.Log("Picked up " + healthPickedUpSinceLastDeath + " since last death");
 		if (healthPickedUpSinceLastDeath > 0) {
+			Debug.Log("Dropping health pickup " + healthPickedUpSinceLastDeath);
 			dropHealthPickup();
 		}
 
-        if(bonfire){
-            transform.position = bonfire.transform.position;
-            direction = PlayerDirection.Right;
-        }
+	    if(bonfire){
+	        transform.position = bonfire.transform.position;
+	        direction = PlayerDirection.Right;
+	    }
 
-        health = BASE_HEATLH;
-        healthPickedUpSinceLastDeath = 0;
+	    health = BASE_HEATLH;
+	    healthPickedUpSinceLastDeath = 0;
 		state = PlayerState.Idle;
+		dying = false;
 	}
 
 	void dropHealthPickup() {
@@ -248,6 +265,7 @@ public class PlayerController : Movable {
 			if (!new_bonfire.isLit()) {
 				new_bonfire.Light();
 				if (banner != null) {
+					banner.fill(false);
 					banner.showMessage("BONFIRE LIT");
 				}
 			}

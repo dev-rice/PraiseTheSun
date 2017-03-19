@@ -7,6 +7,7 @@ public class MessageBanner : MonoBehaviour {
 
 	public Text messageText;
 	public float bannerFadeTime;
+	public GameObject fillscreen;
 
 	private CanvasGroup canvasGroup;
 	private bool shown;
@@ -24,6 +25,10 @@ public class MessageBanner : MonoBehaviour {
 		if (shown && (Time.time - shownTime >= bannerFadeTime)) {
 			hide();
 		}
+	}
+
+	public void fill(bool shouldFill) {
+		fillscreen.SetActive(shouldFill);
 	}
 
 	private void show() {
