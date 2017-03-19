@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 61667075049568120}
   - component: {fileID: 50865997345836102}
   - component: {fileID: 114637728072565958}
+  - component: {fileID: 114266021422169092}
   m_Layer: 11
   m_Name: enemy_scorpion
   m_TagString: Untagged
@@ -155,6 +156,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114266021422169092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786454349872984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b3ce8e43d0544818babec1a616aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDropped: 1500
+  healtPickupPrefab: {fileID: 1880266799632012, guid: 9a4ae469cac064cf2855f3423476a9b1,
+    type: 2}
 --- !u!114 &114637728072565958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,7 +187,7 @@ MonoBehaviour:
   playerNearDistance: 3
   playerFarDistance: 8
   idleTime: 5
-  health: 0
+  health: 1000
   tailJoint1: {x: 1, y: 0, z: 0}
   tailJoint2: {x: 2, y: 1, z: 0}
   tailJoint3: {x: 0, y: 1.5, z: 0}
@@ -181,6 +196,9 @@ MonoBehaviour:
   stingerSprite: {fileID: 1540840728686204, guid: 0bed692caf463a141b8cb7f15bd889ce,
     type: 2}
   tailJabTime: 0.7
+  bloodParticles: {fileID: 1040418253295644, guid: 43eb3d5bbea393d45a7f3945a4cf3b5b,
+    type: 2}
+  banner: {fileID: 0}
 --- !u!212 &212372211125314038
 SpriteRenderer:
   m_ObjectHideFlags: 1

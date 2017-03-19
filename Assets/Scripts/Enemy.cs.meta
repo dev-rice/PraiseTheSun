@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: f7b3ce8e43d0544818babec1a616aecf
-timeCreated: 1489277925
+timeCreated: 1489949103
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healtPickupPrefab: {fileID: 1880266799632012, guid: 9a4ae469cac064cf2855f3423476a9b1,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

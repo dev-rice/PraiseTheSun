@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 50761352641573354}
   - component: {fileID: 114228628389992486}
   - component: {fileID: 82070548053938460}
+  - component: {fileID: 114962419907837658}
   m_Layer: 11
   m_Name: enemy_lion
   m_TagString: Enemy
@@ -200,6 +201,20 @@ MonoBehaviour:
   health: 500
   growlSound: {fileID: 8300000, guid: fc1bb15a1666f1345b6c6c1f7b96dff6, type: 3}
   hitSound: {fileID: 8300000, guid: d47316b6c1350f14795d67fee3501f39, type: 3}
+--- !u!114 &114962419907837658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213219490832036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b3ce8e43d0544818babec1a616aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDropped: 500
+  healtPickupPrefab: {fileID: 1880266799632012, guid: 9a4ae469cac064cf2855f3423476a9b1,
+    type: 2}
 --- !u!212 &212045439111699652
 SpriteRenderer:
   m_ObjectHideFlags: 1

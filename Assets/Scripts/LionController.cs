@@ -50,6 +50,9 @@ public class LionController : Movable {
     // gameobject references
     private GameObject player;
 
+    // enemy reference (for dying/respawning)
+    private Enemy enemy;
+
 	void Start () {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,6 +62,8 @@ public class LionController : Movable {
         if(!player){
             Debug.LogError("Couldn't find player gameobject.");
         }
+
+        enemy = GetComponent<Enemy>();
 	}
 
 	void Update () {
@@ -140,6 +145,7 @@ public class LionController : Movable {
 
         if(health <= 0){
             state = LionState.Dead;
+            enemy.die();
         }
 	}
 
