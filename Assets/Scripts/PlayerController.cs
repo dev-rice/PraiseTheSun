@@ -212,14 +212,14 @@ public class PlayerController : Movable {
 				banner.fill(true);
 				banner.showMessage("YOU DIED");
 			}
-			StartCoroutine(dieAfterTime(1));			
+			StartCoroutine(dieAfterTime(1));
 		}
 	}
 
 	IEnumerator dieAfterTime(float time) {
     	dying = true;
     	yield return new WaitForSeconds(time);
- 
+
      	// Code to execute after the delay
 	 	levelManager.playerDied();
 
