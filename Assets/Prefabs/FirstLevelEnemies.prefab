@@ -5519,7 +5519,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114156207924292986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5561,7 +5561,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114176437568969476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5656,7 +5656,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114242307057397406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5789,7 +5789,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114358644771547770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5887,7 +5887,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114486107904832442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5972,7 +5972,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114599498109977896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6358,7 +6358,7 @@ MonoBehaviour:
   destroyAfterTime: 0
   hurtCreator: 0
   creator: {fileID: 0}
-  damage: 30
+  damage: 200
 --- !u!114 &114890048050217978
 MonoBehaviour:
   m_ObjectHideFlags: 1
